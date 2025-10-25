@@ -98,11 +98,17 @@ function renderGlossary() {
 // シミュレーター初期化
 function initSimulator() {
     const productSelect = document.getElementById('product-select');
-    if (productSelect && productSelect.options.length === 0) {
+    if (productSelect && AppState.sampleBOM) {
+        // 既存のオプションをクリア（「読み込み中...」を削除）
+        productSelect.innerHTML = '';
+
+        // sample_bom.jsonから製品オプションを追加
         const option = document.createElement('option');
         option.value = AppState.sampleBOM.product.id;
-        option.textContent = AppState.sampleBOM.product.name;
+        option.textContent = `${AppState.sampleBOM.product.name} (${AppState.sampleBOM.product.nameEn})`;
         productSelect.appendChild(option);
+
+        console.log('シミュレーター初期化完了:', AppState.sampleBOM.product.name);
     }
 }
 
