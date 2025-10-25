@@ -1,0 +1,159 @@
+%% システム統合アーキテクチャ
+%% BOM/BOP → ISO/IEC 82474 → ILCD → LCA
+
+graph TB
+    %% スタイル定義
+    classDef systemLayer fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    classDef dataLayer fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px
+    classDef apiLayer fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef storageLayer fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    classDef toolLayer fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+
+    %% エンタープライズシステム層
+    subgraph Enterprise["エンタープライズシステム層"]
+        PLM["PLM System<br/>(Product Lifecycle<br/>Management)"]:::systemLayer
+        ERP["ERP System<br/>(Enterprise Resource<br/>Planning)"]:::systemLayer
+        CAD["CAD System<br/>(Computer-Aided<br/>Design)"]:::systemLayer
+        PDM["PDM System<br/>(Product Data<br/>Management)"]:::systemLayer
+    end
+
+    %% データ抽出・変換層
+    subgraph Extract["データ抽出・変換層 (ETL)"]
+        BOMExtract["BOM<br/>Extractor"]:::dataLayer
+        BOPExtract["BOP<br/>Extractor"]:::dataLayer
+        MaterialDB["Material<br/>Database<br/>Interface"]:::dataLayer
+        SupplierAPI["Supplier<br/>Data API"]:::dataLayer
+    end
+
+    %% 材料宣言生成層
+    subgraph MatDeclGen["材料宣言生成層"]
+        MDGenerator["ISO/IEC 82474<br/>Generator"]:::apiLayer
+        DSLEngine["DSL Check<br/>Engine"]:::apiLayer
+        ComplianceEngine["Compliance<br/>Verification<br/>Engine"]:::apiLayer
+        XMLValidator["XML Schema<br/>Validator"]:::apiLayer
+    end
+
+    %% データマッピング・変換層
+    subgraph Mapping["データマッピング・変換層"]
+        MappingEngine["Mapping<br/>Engine"]:::apiLayer
+        TransformEngine["Data<br/>Transform<br/>Engine"]:::apiLayer
+        ILCDGenerator["ILCD<br/>Generator"]:::apiLayer
+        FormatConverter["Format<br/>Converter<br/>(olca-converter)"]:::apiLayer
+    end
+
+    %% データストレージ層
+    subgraph Storage["データストレージ層"]
+        XMLRepo["XML<br/>Repository"]:::storageLayer
+        MetaDB["Metadata<br/>Database"]:::storageLayer
+        VersionControl["Version<br/>Control<br/>System"]:::storageLayer
+        CacheLayer["Cache<br/>Layer<br/>(Redis)"]:::storageLayer
+    end
+
+    %% LCAツール統合層
+    subgraph LCAIntegration["LCAツール統合層"]
+        ILCDAdapter["ILCD<br/>Adapter"]:::toolLayer
+        OpenLCAConn["openLCA<br/>Connector"]:::toolLayer
+        SimaProConn["SimaPro<br/>Connector"]:::toolLayer
+        GaBiConn["GaBi<br/>Connector"]:::toolLayer
+    end
+
+    %% LCA実行・分析層
+    subgraph LCAExec["LCA実行・分析層"]
+        LCAEngine["LCA<br/>Calculation<br/>Engine"]:::toolLayer
+        ImpactAssess["Impact<br/>Assessment<br/>Module"]:::toolLayer
+        Reporting["Reporting<br/>Module"]:::toolLayer
+        Visualization["Visualization<br/>Dashboard"]:::toolLayer
+    end
+
+    %% APIゲートウェイ層
+    subgraph API["API Gateway & Services"]
+        RESTful["RESTful API"]:::apiLayer
+        GraphQL["GraphQL API"]:::apiLayer
+        WebServices["SOAP Web<br/>Services"]:::apiLayer
+        EventBus["Event Bus<br/>(Message Queue)"]:::apiLayer
+    end
+
+    %% セキュリティ・認証層
+    subgraph Security["セキュリティ・認証層"]
+        Auth["Authentication<br/>Service"]:::systemLayer
+        AuthZ["Authorization<br/>Service"]:::systemLayer
+        Encryption["Data<br/>Encryption"]:::systemLayer
+        Audit["Audit Log<br/>Service"]:::systemLayer
+    end
+
+    %% データフロー接続: 上流から下流へ
+
+    %% エンタープライズ → 抽出
+    PLM --> BOMExtract
+    ERP --> BOMExtract
+    CAD --> BOMExtract
+    PDM --> BOPExtract
+    ERP --> BOPExtract
+
+    %% 抽出 → 材料宣言生成
+    BOMExtract --> MDGenerator
+    BOPExtract --> MDGenerator
+    MaterialDB --> MDGenerator
+    SupplierAPI --> MDGenerator
+
+    %% 材料宣言生成内部フロー
+    MDGenerator --> DSLEngine
+    DSLEngine --> ComplianceEngine
+    ComplianceEngine --> XMLValidator
+
+    %% 材料宣言 → マッピング
+    XMLValidator --> MappingEngine
+    MappingEngine --> TransformEngine
+    TransformEngine --> ILCDGenerator
+    ILCDGenerator --> FormatConverter
+
+    %% マッピング → ストレージ
+    XMLValidator --> XMLRepo
+    ILCDGenerator --> XMLRepo
+    MDGenerator --> MetaDB
+    ILCDGenerator --> MetaDB
+    XMLRepo --> VersionControl
+    MappingEngine --> CacheLayer
+
+    %% ストレージ → LCAツール統合
+    XMLRepo --> ILCDAdapter
+    ILCDAdapter --> OpenLCAConn
+    ILCDAdapter --> SimaProConn
+    ILCDAdapter --> GaBiConn
+
+    %% LCAツール統合 → LCA実行
+    OpenLCAConn --> LCAEngine
+    SimaProConn --> LCAEngine
+    GaBiConn --> LCAEngine
+
+    LCAEngine --> ImpactAssess
+    ImpactAssess --> Reporting
+    Reporting --> Visualization
+
+    %% APIゲートウェイ接続
+    BOMExtract <--> RESTful
+    MDGenerator <--> RESTful
+    ILCDGenerator <--> GraphQL
+    SupplierAPI <--> WebServices
+    TransformEngine <--> EventBus
+
+    %% セキュリティ層の統合
+    RESTful --> Auth
+    GraphQL --> Auth
+    WebServices --> Auth
+    Auth --> AuthZ
+    XMLRepo --> Encryption
+    MetaDB --> Encryption
+    MDGenerator --> Audit
+    ILCDGenerator --> Audit
+
+    %% 注釈とメモ
+    note1["ISO/IEC 82474<br/>標準準拠"]
+    note2["ILCD Format<br/>ISO 14040/14044<br/>準拠"]
+    note3["マイクロサービス<br/>アーキテクチャ"]
+    note4["データ品質保証<br/>& バリデーション"]
+
+    MDGenerator -.-> note1
+    ILCDGenerator -.-> note2
+    API -.-> note3
+    XMLValidator -.-> note4

@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="環境情報のサプライチェーンデータ連携 - ILCD形式とISO/IEC 82474を活用したLCA分析の実践的ガイド">
+    <meta name="keywords" content="ILCD, ISO/IEC 82474, LCA, サプライチェーン, 環境情報, BOM, BOP">
+    <meta name="author" content="Claude Code">
+    <title>環境情報サプライチェーンデータ連携 - インタラクティブガイド</title>
+
+    <!-- スタイルシート -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <!-- Mermaid.js for diagrams -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+
+    <!-- Prism.js for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-xml.min.js"></script>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header>
+        <div class="container">
+            <h1>環境情報のサプライチェーンデータ連携</h1>
+            <p>ILCD形式とISO/IEC 82474を活用したLCA分析 - インタラクティブ学習ガイド</p>
+        </div>
+    </header>
+
+    <!-- ナビゲーション -->
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#overview" class="active">概要</a></li>
+                <li><a href="#flowchart">データフロー</a></li>
+                <li><a href="#standards">標準規格</a></li>
+                <li><a href="#simulator">シミュレーター</a></li>
+                <li><a href="#glossary">用語集</a></li>
+                <li><a href="#resources">リソース</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- メインコンテンツ -->
+    <main>
+        <!-- 概要セクション -->
+        <section id="overview">
+            <div class="container">
+                <h2>概要</h2>
+
+                <div class="card">
+                    <div class="card-header">このガイドについて</div>
+                    <div class="card-body">
+                        <p>このインタラクティブガイドでは、製品のライフサイクル全体における環境情報のデータ連携について学びます。特に、<strong>BOM（Bill of Materials）</strong>から<strong>ILCD形式</strong>、<strong>ISO/IEC 82474</strong>を経由したLCA分析までの一連のプロセスを視覚的に理解できます。</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-3 mt-xl">
+                    <div class="card">
+                        <div class="card-header">🎯 学習目標</div>
+                        <div class="card-body">
+                            <ul>
+                                <li>ILCD形式の構造と目的</li>
+                                <li>ISO/IEC 82474材料宣言</li>
+                                <li>BOM/BOPとLCAの統合</li>
+                                <li>データマッピングの実践</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">📊 主要トピック</div>
+                        <div class="card-body">
+                            <ul>
+                                <li>サプライチェーンデータフロー</li>
+                                <li>環境影響評価（LCA）</li>
+                                <li>規制コンプライアンス</li>
+                                <li>データ標準化と互換性</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">🛠️ 対象者</div>
+                        <div class="card-body">
+                            <ul>
+                                <li>環境・サステナビリティ担当者</li>
+                                <li>製品設計エンジニア</li>
+                                <li>調達・サプライチェーン担当</li>
+                                <li>LCA実務者</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mt-xl">
+                    <div class="card-header">重要な概念</div>
+                    <div class="card-body">
+                        <h3>データ連携の全体像</h3>
+                        <p>製品の環境情報管理には、複数の標準規格とデータフォーマットが関係します：</p>
+
+                        <div class="grid grid-2 mt-md">
+                            <div>
+                                <h4 style="color: var(--primary-color);">ISO/IEC 82474</h4>
+                                <p><strong>目的:</strong> 材料宣言と規制コンプライアンス</p>
+                                <p><strong>焦点:</strong> 材料の化学組成、有害物質</p>
+                                <p><strong>用途:</strong> RoHS、REACH対応</p>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--secondary-color);">ILCD形式</h4>
+                                <p><strong>目的:</strong> LCAデータ交換</p>
+                                <p><strong>焦点:</strong> 環境影響、プロセスフロー</p>
+                                <p><strong>用途:</strong> カーボンフットプリント、EPD</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- データフローセクション -->
+        <section id="flowchart" style="display: none;">
+            <div class="container">
+                <h2>サプライチェーンデータフロー</h2>
+
+                <div class="card">
+                    <div class="card-header">BOM/BOP → ISO/IEC 82474 → ILCD → LCA</div>
+                    <div class="card-body">
+                        <p>製品環境情報のデータ連携は、以下の流れで行われます：</p>
+
+                        <div class="mermaid">
+graph LR
+    A[BOM/BOP<br/>製品構成情報] --> B[ISO/IEC 82474<br/>材料宣言]
+    B --> C[ILCD形式<br/>LCIデータ]
+    C --> D[LCAツール<br/>環境影響評価]
+
+    style A fill:#e1f5ff
+    style B fill:#fff3e0
+    style C fill:#e8f5e9
+    style D fill:#f3e5f5
+                        </div>
+
+                        <div class="grid grid-2 mt-xl">
+                            <div class="card">
+                                <div class="card-header">ステップ1: BOM/BOPデータ抽出</div>
+                                <div class="card-body">
+                                    <p>PLM、ERP、MESシステムから以下のデータを抽出：</p>
+                                    <ul>
+                                        <li>部品リストと階層構造</li>
+                                        <li>材料名と質量</li>
+                                        <li>製造工程データ</li>
+                                        <li>サプライヤー情報</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">ステップ2: 材料宣言生成</div>
+                                <div class="card-body">
+                                    <p>ISO/IEC 82474準拠の材料宣言を作成：</p>
+                                    <ul>
+                                        <li>材料の化学組成</li>
+                                        <li>CAS番号の特定</li>
+                                        <li>DSLチェック</li>
+                                        <li>規制適合性確認</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">ステップ3: ILCD形式変換</div>
+                                <div class="card-body">
+                                    <p>LCA用のILCDデータセット作成：</p>
+                                    <ul>
+                                        <li>プロセスデータセット</li>
+                                        <li>フローデータセット</li>
+                                        <li>環境排出データ追加</li>
+                                        <li>エネルギーデータ補完</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">ステップ4: LCA分析実行</div>
+                                <div class="card-body">
+                                    <p>LCAツールでの環境影響評価：</p>
+                                    <ul>
+                                        <li>LCIモデル構築</li>
+                                        <li>LCIA計算</li>
+                                        <li>結果の分析</li>
+                                        <li>レポート作成</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 標準規格セクション -->
+        <section id="standards" style="display: none;">
+            <div class="container">
+                <h2>標準規格の詳細</h2>
+
+                <div class="tabs" data-tab-group="standards">
+                    <button class="tab active" data-tab="tab-ilcd">ILCD形式</button>
+                    <button class="tab" data-tab="tab-iso82474">ISO/IEC 82474</button>
+                    <button class="tab" data-tab="tab-comparison">比較</button>
+                </div>
+
+                <div id="tab-ilcd" class="tab-content active" data-tab-group="standards">
+                    <div class="card">
+                        <div class="card-header">ILCD (International Reference Life Cycle Data System)</div>
+                        <div class="card-body">
+                            <h3>概要</h3>
+                            <p>ILCDは、欧州委員会JRCが開発したLCAデータ交換のための包括的なシステムです。</p>
+
+                            <h3 class="mt-lg">8つのデータセットタイプ</h3>
+                            <div class="grid grid-2">
+                                <div>
+                                    <h4>1. Process Dataset</h4>
+                                    <p>製造プロセスの投入・産出データ</p>
+
+                                    <h4>2. Flow Dataset</h4>
+                                    <p>物質、材料、エネルギーのフロー</p>
+
+                                    <h4>3. Flow Property Dataset</h4>
+                                    <p>フローの測定可能な特性</p>
+
+                                    <h4>4. Unit Group Dataset</h4>
+                                    <p>測定単位とその変換係数</p>
+                                </div>
+                                <div>
+                                    <h4>5. LCIA Method Dataset</h4>
+                                    <p>影響評価手法の定義</p>
+
+                                    <h4>6. Contact Dataset</h4>
+                                    <p>作成者や組織の情報</p>
+
+                                    <h4>7. Source Dataset</h4>
+                                    <p>データの出典情報</p>
+
+                                    <h4>8. Life Cycle Model</h4>
+                                    <p>完全な製品システムモデル</p>
+                                </div>
+                            </div>
+
+                            <div class="mt-lg">
+                                <h3>主な特徴</h3>
+                                <ul>
+                                    <li><strong>XMLベース:</strong> 機械可読性と検証が容易</li>
+                                    <li><strong>UUID管理:</strong> データセットの一意識別</li>
+                                    <li><strong>ISO 14040/14044準拠:</strong> 国際標準に完全対応</li>
+                                    <li><strong>多言語対応:</strong> xml:lang属性で複数言語をサポート</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-iso82474" class="tab-content" data-tab-group="standards">
+                    <div class="card">
+                        <div class="card-header">ISO/IEC 82474 材料宣言標準</div>
+                        <div class="card-body">
+                            <h3>概要</h3>
+                            <p>ISO/IEC 82474（旧IEC 62474）は、製品の材料宣言に関する国際標準です。2025年版で大幅に改訂され、循環経済やWebサービス対応が強化されました。</p>
+
+                            <h3 class="mt-lg">主要コンポーネント</h3>
+                            <div class="grid grid-2">
+                                <div class="card">
+                                    <div class="card-header">DeclarationInfo</div>
+                                    <div class="card-body">
+                                        <p>宣言の基本情報、宣言者、規制要件</p>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">Product</div>
+                                    <div class="card-body">
+                                        <p>製品識別、分類、質量情報</p>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">MaterialComposition</div>
+                                    <div class="card-body">
+                                        <p>コンポーネントと材料の階層構造</p>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">DeclarableSubstanceList</div>
+                                    <div class="card-body">
+                                        <p>DSLチェック結果と物質評価</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-lg">
+                                <h3>DSL (Declarable Substance List)</h3>
+                                <p>定期的に更新される宣言可能物質のリスト：</p>
+                                <ul>
+                                    <li>RoHS制限物質（10物質）</li>
+                                    <li>REACH SVHC（高懸念物質）</li>
+                                    <li>ハロゲン系難燃剤</li>
+                                    <li>その他の規制物質</li>
+                                </ul>
+                                <p><span class="badge badge-info">最新版: v25.0 (2025-01-01)</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-comparison" class="tab-content" data-tab-group="standards">
+                    <div class="card">
+                        <div class="card-header">ILCD vs ISO/IEC 82474 - 比較</div>
+                        <div class="card-body">
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <thead>
+                                    <tr style="background-color: var(--gray-200);">
+                                        <th style="padding: var(--spacing-sm); border: 1px solid var(--gray-300);">項目</th>
+                                        <th style="padding: var(--spacing-sm); border: 1px solid var(--gray-300);">ILCD形式</th>
+                                        <th style="padding: var(--spacing-sm); border: 1px solid var(--gray-300);">ISO/IEC 82474</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="padding: var(--spacing-sm); border: 1px solid var(--gray-300);"><strong>主な目的</strong></td>
+                                        <td style="padding: var(--spacing-sm); border: 1px solid var(--gray-300);">LCAデータ交換</td>
+                                        <td style="padding: var(--spacing-sm); border: 1px solid var(--gray-300);">材料宣言</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: var(--spacing-sm); border: 1px solid var(--gray-300);"><strong>焦点</strong></td>
+                                        <td style="padding: var(--spacing-sm); border: 1px solid var(--gray-300);">環境影響評価</td>
+                                        <td style="padding: var(--spacing-sm); border: 1px solid var(--gray-300);">規制コンプライアンス</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: var(--spacing-sm); border: 1px solid var(--gray-300);"><strong>データ形式</strong></td>
+                                        <td style="padding: var(--spacing-sm); border: 1px solid var(--gray-300);">XML</td>
+                                        <td style="padding: var(--spacing-sm); border: 1px solid var(--gray-300);">XML (JSON対応予定)</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: var(--spacing-sm); border: 1px solid var(--gray-300);"><strong>主要コンテンツ</strong></td>
+                                        <td style="padding: var(--spacing-sm); border: 1px solid var(--gray-300);">プロセス、フロー、環境排出</td>
+                                        <td style="padding: var(--spacing-sm); border: 1px solid var(--gray-300);">材料構成、CAS番号、DSL</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: var(--spacing-sm); border: 1px solid var(--gray-300);"><strong>ユースケース</strong></td>
+                                        <td style="padding: var(--spacing-sm); border: 1px solid var(--gray-300);">EPD、カーボンフットプリント</td>
+                                        <td style="padding: var(--spacing-sm); border: 1px solid var(--gray-300);">RoHS/REACH対応</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: var(--spacing-sm); border: 1px solid var(--gray-300);"><strong>相互補完性</strong></td>
+                                        <td colspan="2" style="padding: var(--spacing-sm); border: 1px solid var(--gray-300); text-align: center;">
+                                            <strong>高い</strong> - 統合により包括的な環境情報管理が可能
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- シミュレーターセクション -->
+        <section id="simulator" style="display: none;">
+            <div class="container">
+                <h2>LCA計算シミュレーター</h2>
+
+                <div class="card">
+                    <div class="card-header">簡易LCA計算</div>
+                    <div class="card-body">
+                        <p>サンプル製品のBOMデータを使用して、環境影響を簡易計算します。</p>
+
+                        <div class="simulator-panel mt-lg">
+                            <div class="input-group">
+                                <label for="product-select">製品を選択:</label>
+                                <select id="product-select">
+                                    <option value="">読み込み中...</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="quantity">数量:</label>
+                                <input type="number" id="quantity" value="1" min="1">
+                            </div>
+
+                            <button class="btn btn-primary" onclick="runSimulation()">計算実行</button>
+
+                            <div id="simulation-results" class="result-display mt-lg">
+                                <p class="text-center" style="color: var(--gray-500);">計算ボタンをクリックして結果を表示</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-xl">
+                            <h3>計算の仕組み</h3>
+                            <p>このシミュレーターは、以下のステップで環境影響を計算します：</p>
+                            <ol>
+                                <li>BOMから各材料の質量を抽出</li>
+                                <li>材料ごとのエンボディドカーボン係数を適用</li>
+                                <li>製造工程のエネルギー消費を加算</li>
+                                <li>輸送による排出を推定</li>
+                                <li>総合的な環境影響指標を算出</li>
+                            </ol>
+                            <p><em>注: これは教育目的の簡易計算です。実際のLCAではより詳細なデータと手法が必要です。</em></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 用語集セクション -->
+        <section id="glossary" style="display: none;">
+            <div class="container">
+                <h2>用語集</h2>
+
+                <div class="card mb-lg">
+                    <div class="card-body">
+                        <p>環境情報管理とLCAに関連する主要な用語を解説します。カードをクリックすると詳細が表示されます。</p>
+                    </div>
+                </div>
+
+                <div class="glossary-grid"></div>
+            </div>
+        </section>
+
+        <!-- リソースセクション -->
+        <section id="resources" style="display: none;">
+            <div class="container">
+                <h2>参考リソース</h2>
+
+                <div class="grid grid-2">
+                    <div class="card">
+                        <div class="card-header">📚 公式ドキュメント</div>
+                        <div class="card-body">
+                            <ul>
+                                <li><a href="https://eplca.jrc.ec.europa.eu/ilcd.html" target="_blank">ILCD公式サイト (JRC)</a></li>
+                                <li><a href="https://www.iso.org/standard/85487.html" target="_blank">ISO/IEC 82474-1:2025</a></li>
+                                <li><a href="https://www.iso.org/standard/37456.html" target="_blank">ISO 14040:2006 (LCA原則)</a></li>
+                                <li><a href="https://www.iso.org/standard/38498.html" target="_blank">ISO 14044:2006 (LCA要件)</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">🛠️ LCAツール</div>
+                        <div class="card-body">
+                            <ul>
+                                <li><a href="https://www.openlca.org/" target="_blank">openLCA (オープンソース)</a></li>
+                                <li><a href="https://simapro.com/" target="_blank">SimaPro (商用)</a></li>
+                                <li><a href="https://sphera.com/product-sustainability-software/" target="_blank">GaBi/Sphera (商用)</a></li>
+                                <li><a href="https://www.openlca.org/format-converter/" target="_blank">Format Converter</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">📊 LCIデータベース</div>
+                        <div class="card-body">
+                            <ul>
+                                <li><a href="https://eplca.jrc.ec.europa.eu/ELCD3/" target="_blank">ELCD (欧州)</a></li>
+                                <li><a href="https://ecoinvent.org/" target="_blank">ecoinvent (国際)</a></li>
+                                <li><a href="https://nexus.openlca.org/" target="_blank">openLCA Nexus</a></li>
+                                <li><a href="https://www.lcacommons.gov/" target="_blank">US LCI (米国)</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">🎓 学習リソース</div>
+                        <div class="card-body">
+                            <ul>
+                                <li><a href="https://www.lifecycleinitiative.org/" target="_blank">Life Cycle Initiative (UNEP/SETAC)</a></li>
+                                <li><a href="https://pre-sustainability.com/academy/" target="_blank">PRé Academy</a></li>
+                                <li><a href="Report.md">完全な調査レポート (Report.md)</a></li>
+                                <li><a href="DATA_SOURCES.md">データソース一覧</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mt-xl">
+                    <div class="card-header">サンプルファイル</div>
+                    <div class="card-body">
+                        <p>本プロジェクトには、以下のサンプルファイルが含まれています：</p>
+                        <ul>
+                            <li><strong>docs/examples/ilcd_sample.xml</strong> - ILCD Process Datasetのサンプル</li>
+                            <li><strong>docs/examples/iso82474_sample.xml</strong> - ISO/IEC 82474材料宣言のサンプル</li>
+                            <li><strong>docs/examples/bom_sample.xml</strong> - BOM（部品構成表）のサンプル</li>
+                            <li><strong>docs/diagrams/*.mmd</strong> - Mermaidダイアグラム</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer>
+        <div class="container">
+            <div class="grid grid-2">
+                <div>
+                    <h3>環境情報サプライチェーンデータ連携プロジェクト</h3>
+                    <p>BOM/BOPを基盤とした環境情報のサプライチェーンデータ連携：ILCD形式によるLCA分析とISO/IEC 82474との関係性</p>
+                </div>
+                <div>
+                    <h3>関連ドキュメント</h3>
+                    <ul style="list-style: none;">
+                        <li><a href="README.md">README</a></li>
+                        <li><a href="Report.md">調査レポート</a></li>
+                        <li><a href="DATA_SOURCES.md">データソース</a></li>
+                        <li><a href="DEVELOPMENT_LOG.md">開発ログ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr style="margin: var(--spacing-lg) 0; border-color: var(--gray-600);">
+            <p class="text-center">
+                作成日: 2025年10月25日 |
+                作成: Claude Code (Anthropic Claude 3.5 Sonnet) |
+                バージョン: 1.0
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mermaid初期化
+        mermaid.initialize({ startOnLoad: true, theme: 'default' });
+
+        // タブ切り替え機能
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const tabGroup = this.closest('.tabs').getAttribute('data-tab-group');
+                const targetId = this.getAttribute('data-tab');
+
+                // すべてのタブを非アクティブ化
+                document.querySelectorAll(`.tabs[data-tab-group="${tabGroup}"] .tab`).forEach(t => {
+                    t.classList.remove('active');
+                });
+                this.classList.add('active');
+
+                // すべてのタブコンテンツを非表示
+                document.querySelectorAll(`.tab-content[data-tab-group="${tabGroup}"]`).forEach(content => {
+                    content.classList.remove('active');
+                });
+
+                // 対応するコンテンツを表示
+                const targetContent = document.getElementById(targetId);
+                if (targetContent) {
+                    targetContent.classList.add('active');
+                }
+            });
+        });
+    </script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
