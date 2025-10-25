@@ -1,0 +1,127 @@
+%% サプライチェーン環境情報データ連携フロー
+%% BOM/BOP → ISO/IEC 82474 → ILCD → LCA分析
+
+graph TB
+    %% スタイル定義
+    classDef bomClass fill:#e1f5ff,stroke:#01579b,stroke-width:2px
+    classDef iso82474Class fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef ilcdClass fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    classDef lcaClass fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px
+    classDef processClass fill:#fff9c4,stroke:#f57f17,stroke-width:2px
+    classDef dataClass fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+
+    %% データソース層
+    subgraph Source["データソース層"]
+        BOM["BOM<br/>(Bill of Materials)<br/>部品構成表"]:::bomClass
+        BOP["BOP<br/>(Bill of Process)<br/>工程表"]:::bomClass
+        Design["設計データ<br/>(CAD/PLM)"]:::bomClass
+    end
+
+    %% サプライヤー情報層
+    subgraph Supplier["サプライヤー層"]
+        Sup1["Tier 1<br/>サプライヤー"]:::dataClass
+        Sup2["Tier 2<br/>サプライヤー"]:::dataClass
+        Sup3["Tier N<br/>サプライヤー"]:::dataClass
+    end
+
+    %% 材料宣言層 (ISO/IEC 82474)
+    subgraph MatDecl["材料宣言層 (ISO/IEC 82474)"]
+        MD1["材料宣言<br/>XML生成"]:::iso82474Class
+        DSL["DSL<br/>(Declarable<br/>Substance List)<br/>チェック"]:::iso82474Class
+        Compliance["規制適合性<br/>検証<br/>(RoHS/REACH)"]:::iso82474Class
+    end
+
+    %% データ変換・統合層
+    subgraph Transform["データ変換・統合層"]
+        Mapping["データマッピング<br/>エンジン"]:::processClass
+        Validation["データ検証<br/>品質チェック"]:::processClass
+        Aggregation["データ集約<br/>正規化"]:::processClass
+    end
+
+    %% ILCD形式層
+    subgraph ILCD["ILCD形式層"]
+        ILCDProc["Process<br/>Dataset"]:::ilcdClass
+        ILCDFlow["Flow<br/>Dataset"]:::ilcdClass
+        ILCDLCIA["LCIA Method<br/>Dataset"]:::ilcdClass
+        ILCDSrc["Source<br/>Dataset"]:::ilcdClass
+    end
+
+    %% LCAツール層
+    subgraph LCATool["LCAツール層"]
+        openLCA["openLCA"]:::lcaClass
+        SimaPro["SimaPro"]:::lcaClass
+        GaBi["GaBi/Sphera"]:::lcaClass
+        Custom["その他の<br/>LCAツール"]:::lcaClass
+    end
+
+    %% LCA分析・評価層
+    subgraph Analysis["LCA分析・評価層"]
+        LCI["LCI<br/>(Life Cycle<br/>Inventory)"]:::lcaClass
+        LCIA["LCIA<br/>(Life Cycle<br/>Impact<br/>Assessment)"]:::lcaClass
+        Interpret["解釈・<br/>レポーティング"]:::lcaClass
+    end
+
+    %% 成果物層
+    subgraph Output["成果物層"]
+        EPD["EPD<br/>(Environmental<br/>Product<br/>Declaration)"]:::dataClass
+        CFP["Carbon<br/>Footprint"]:::dataClass
+        Report["LCA<br/>レポート"]:::dataClass
+        Dashboard["ダッシュボード<br/>可視化"]:::dataClass
+    end
+
+    %% データフロー接続
+    BOM --> MD1
+    BOP --> MD1
+    Design --> MD1
+
+    Sup1 --> MD1
+    Sup2 --> MD1
+    Sup3 --> MD1
+
+    MD1 --> DSL
+    DSL --> Compliance
+    Compliance --> Mapping
+
+    Mapping --> Validation
+    Validation --> Aggregation
+
+    Aggregation --> ILCDProc
+    Aggregation --> ILCDFlow
+    Aggregation --> ILCDLCIA
+    Aggregation --> ILCDSrc
+
+    ILCDProc --> openLCA
+    ILCDProc --> SimaPro
+    ILCDProc --> GaBi
+    ILCDProc --> Custom
+
+    ILCDFlow --> openLCA
+    ILCDFlow --> SimaPro
+    ILCDFlow --> GaBi
+
+    ILCDLCIA --> openLCA
+    ILCDLCIA --> SimaPro
+
+    ILCDSrc --> openLCA
+
+    openLCA --> LCI
+    SimaPro --> LCI
+    GaBi --> LCI
+    Custom --> LCI
+
+    LCI --> LCIA
+    LCIA --> Interpret
+
+    Interpret --> EPD
+    Interpret --> CFP
+    Interpret --> Report
+    Interpret --> Dashboard
+
+    %% 注釈
+    note1["ISO 14040/14044準拠"]
+    note2["XMLベース<br/>データ交換"]
+    note3["8種類の<br/>データセット<br/>タイプ"]
+
+    Compliance -.-> note1
+    MD1 -.-> note2
+    ILCD -.-> note3

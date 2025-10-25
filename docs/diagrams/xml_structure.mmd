@@ -1,0 +1,143 @@
+%% XML構造比較: ILCD vs ISO/IEC 82474
+
+graph TB
+    %% スタイル定義
+    classDef ilcdStyle fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    classDef isoStyle fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef commonStyle fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    classDef headerStyle fill:#f5f5f5,stroke:#424242,stroke-width:2px
+
+    %% タイトル
+    Title["XML構造の比較"]:::headerStyle
+
+    %% ILCD構造
+    subgraph ILCDStruct["ILCD形式 (Process Dataset例)"]
+        ILCDRoot["&lt;process&gt;<br/>ルート要素"]:::ilcdStyle
+
+        ILCDProcInfo["processInformation<br/>プロセス情報"]:::ilcdStyle
+        ILCDDataSet["dataSetInformation<br/>UUID, 名前, 分類"]:::ilcdStyle
+        ILCDQuant["quantitativeReference<br/>定量的参照"]:::ilcdStyle
+        ILCDTime["time<br/>時間的範囲"]:::ilcdStyle
+        ILCDGeo["geography<br/>地理的範囲"]:::ilcdStyle
+        ILCDTech["technology<br/>技術情報"]:::ilcdStyle
+
+        ILCDModel["modellingAndValidation<br/>モデリングと検証"]:::ilcdStyle
+        ILCDLCI["LCIMethodAndAllocation<br/>LCI手法"]:::ilcdStyle
+        ILCDData["dataSourcesTreatment<br/>データソース"]:::ilcdStyle
+        ILCDValid["validation<br/>検証情報"]:::ilcdStyle
+
+        ILCDAdmin["administrativeInformation<br/>管理情報"]:::ilcdStyle
+        ILCDEntry["dataEntryBy<br/>作成者"]:::ilcdStyle
+        ILCDPub["publicationAndOwnership<br/>公開情報"]:::ilcdStyle
+
+        ILCDExch["exchanges<br/>交換データ"]:::ilcdStyle
+        ILCDExch1["exchange[0]<br/>参照フロー (製品)"]:::ilcdStyle
+        ILCDExch2["exchange[1..n]<br/>入力/出力フロー"]:::ilcdStyle
+    end
+
+    %% ISO/IEC 82474構造
+    subgraph ISOStruct["ISO/IEC 82474形式 (Material Declaration)"]
+        ISORoot["&lt;MaterialDeclaration&gt;<br/>ルート要素"]:::isoStyle
+
+        ISODeclInfo["DeclarationInfo<br/>宣言情報"]:::isoStyle
+        ISODeclID["DeclarationID<br/>宣言ID"]:::isoStyle
+        ISODeclarant["Declarant<br/>宣言者情報"]:::isoStyle
+        ISORegReq["RegulatoryRequirements<br/>規制要件"]:::isoStyle
+
+        ISOProd["Product<br/>製品情報"]:::isoStyle
+        ISOProdID["ProductID<br/>製品識別子"]:::isoStyle
+        ISOProdClass["ProductClassification<br/>製品分類"]:::isoStyle
+        ISOProdMass["ProductMass<br/>製品質量"]:::isoStyle
+
+        ISOMatComp["MaterialComposition<br/>材料構成"]:::isoStyle
+        ISOComp["Component[1..n]<br/>コンポーネント"]:::isoStyle
+        ISOMat["Material[1..n]<br/>材料詳細"]:::isoStyle
+        ISOCASNum["CASNumber<br/>CAS番号"]:::isoStyle
+
+        ISODSL["DeclarableSubstanceList<br/>宣言可能物質リスト"]:::isoStyle
+        ISODSLRef["DSLReference<br/>DSL参照"]:::isoStyle
+        ISOSubEval["SubstanceEvaluation<br/>物質評価"]:::isoStyle
+        ISOSpecCheck["SpecificSubstanceCheck<br/>特定物質チェック"]:::isoStyle
+
+        ISOCompl["ComplianceDeclaration<br/>適合宣言"]:::isoStyle
+        ISOStmt["Statement<br/>宣言文"]:::isoStyle
+        ISOSig["AuthorizedSignature<br/>承認署名"]:::isoStyle
+    end
+
+    %% 共通概念
+    subgraph Common["共通の概念"]
+        CommonXML["XML基盤<br/>UTF-8エンコーディング"]:::commonStyle
+        CommonUUID["一意識別子<br/>(UUID/ID)"]:::commonStyle
+        CommonMeta["メタデータ<br/>(作成日, バージョン等)"]:::commonStyle
+        CommonValid["検証・品質保証<br/>情報"]:::commonStyle
+        CommonClass["分類・カテゴリ化<br/>システム"]:::commonStyle
+    end
+
+    %% 接続: ILCD階層
+    ILCDRoot --> ILCDProcInfo
+    ILCDRoot --> ILCDModel
+    ILCDRoot --> ILCDAdmin
+    ILCDRoot --> ILCDExch
+
+    ILCDProcInfo --> ILCDDataSet
+    ILCDProcInfo --> ILCDQuant
+    ILCDProcInfo --> ILCDTime
+    ILCDProcInfo --> ILCDGeo
+    ILCDProcInfo --> ILCDTech
+
+    ILCDModel --> ILCDLCI
+    ILCDModel --> ILCDData
+    ILCDModel --> ILCDValid
+
+    ILCDAdmin --> ILCDEntry
+    ILCDAdmin --> ILCDPub
+
+    ILCDExch --> ILCDExch1
+    ILCDExch --> ILCDExch2
+
+    %% 接続: ISO/IEC 82474階層
+    ISORoot --> ISODeclInfo
+    ISORoot --> ISOProd
+    ISORoot --> ISOMatComp
+    ISORoot --> ISODSL
+    ISORoot --> ISOCompl
+
+    ISODeclInfo --> ISODeclID
+    ISODeclInfo --> ISODeclarant
+    ISODeclInfo --> ISORegReq
+
+    ISOProd --> ISOProdID
+    ISOProd --> ISOProdClass
+    ISOProd --> ISOProdMass
+
+    ISOMatComp --> ISOComp
+    ISOComp --> ISOMat
+    ISOMat --> ISOCASNum
+
+    ISODSL --> ISODSLRef
+    ISODSL --> ISOSubEval
+    ISODSL --> ISOSpecCheck
+
+    ISOCompl --> ISOStmt
+    ISOCompl --> ISOSig
+
+    %% 共通概念への接続
+    ILCDRoot -.-> CommonXML
+    ISORoot -.-> CommonXML
+
+    ILCDDataSet -.-> CommonUUID
+    ISODeclID -.-> CommonUUID
+
+    ILCDEntry -.-> CommonMeta
+    ISODeclInfo -.-> CommonMeta
+
+    ILCDValid -.-> CommonValid
+    ISOCompl -.-> CommonValid
+
+    ILCDDataSet -.-> CommonClass
+    ISOProdClass -.-> CommonClass
+
+    %% タイトル接続
+    Title --> ILCDStruct
+    Title --> ISOStruct
+    Title --> Common

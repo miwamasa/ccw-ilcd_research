@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ILCD (International Reference Life Cycle Data System) サンプル
+  データセットタイプ: Process (プロセス)
+
+  このサンプルは教育目的で作成された簡略化されたILCD形式のXMLです。
+  実際のILCD形式はより詳細な要素を含みます。
+
+  参考: European Commission JRC - ILCD Handbook
+-->
+<process xmlns="http://lca.jrc.it/ILCD/Process"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://lca.jrc.it/ILCD/Process ../../schemas/ILCD_ProcessDataSet.xsd"
+         version="1.1">
+
+  <!-- ========================================
+       プロセス情報
+       ======================================== -->
+  <processInformation>
+    <dataSetInformation>
+      <!-- UUID: データセットの一意識別子 -->
+      <UUID>12345678-90ab-cdef-1234-567890abcdef</UUID>
+
+      <!-- 名前: ベース名とトリートメント情報 -->
+      <name>
+        <baseName xml:lang="en">Steel production</baseName>
+        <baseName xml:lang="ja">鉄鋼生産</baseName>
+        <treatmentStandardsRoutes xml:lang="en">basic oxygen furnace</treatmentStandardsRoutes>
+        <mixAndLocationTypes xml:lang="en">production mix, at plant</mixAndLocationTypes>
+      </name>
+
+      <!-- 分類: プロセスの分類 -->
+      <classificationInformation>
+        <classification name="ILCD">
+          <class level="0">Materials production</class>
+          <class level="1">Metals and semimetals</class>
+          <class level="2">Steel and iron</class>
+        </classification>
+      </classificationInformation>
+
+      <!-- 一般コメント -->
+      <generalComment xml:lang="en">
+        This process represents the production of 1 kg of steel using basic oxygen furnace technology.
+        The process includes raw material extraction, transportation, and manufacturing.
+      </generalComment>
+      <generalComment xml:lang="ja">
+        このプロセスは、塩基性酸素炉技術を使用した1kgの鉄鋼生産を表します。
+        原材料の抽出、輸送、製造を含みます。
+      </generalComment>
+    </dataSetInformation>
+
+    <!-- ========================================
+         定量的参照
+         ======================================== -->
+    <quantitativeReference type="Reference flow(s)">
+      <referenceToReferenceFlow>0</referenceToReferenceFlow>
+    </quantitativeReference>
+
+    <!-- ========================================
+         時間的範囲
+         ======================================== -->
+    <time>
+      <referenceYear>2023</referenceYear>
+      <dataSetValidUntil>2028</dataSetValidUntil>
+      <timeRepresentativenessDescription xml:lang="en">
+        Data represents average production conditions for the year 2023
+      </timeRepresentativenessDescription>
+    </time>
+
+    <!-- ========================================
+         地理的範囲
+         ======================================== -->
+    <geography>
+      <locationOfOperationSupplyOrProduction location="JP">
+        <descriptionOfRestrictions xml:lang="en">
+          Data specific to Japanese steel production facilities
+        </descriptionOfRestrictions>
+      </locationOfOperationSupplyOrProduction>
+    </geography>
+
+    <!-- ========================================
+         技術情報
+         ======================================== -->
+    <technology>
+      <technologyDescriptionAndIncludedProcesses xml:lang="en">
+        Steel production via basic oxygen furnace (BOF) route.
+        Includes iron ore preparation, coke production, blast furnace operation,
+        and BOF steelmaking.
+      </technologyDescriptionAndIncludedProcesses>
+      <technologicalApplicability xml:lang="en">
+        Production of general construction and automotive steel
+      </technologicalApplicability>
+    </technology>
+  </processInformation>
+
+  <!-- ========================================
+       モデリングと検証
+       ======================================== -->
+  <modellingAndValidation>
+    <LCIMethodAndAllocation>
+      <typeOfDataSet>Unit process, single operation</typeOfDataSet>
+      <LCIMethodPrinciple>Attributional</LCIMethodPrinciple>
+      <deviationsFromLCIMethodPrinciple xml:lang="en">None</deviationsFromLCIMethodPrinciple>
+      <modellingConstants xml:lang="en">
+        Follows ISO 14040 and ISO 14044 standards
+      </modellingConstants>
+    </LCIMethodAndAllocation>
+
+    <dataSourcesTreatmentAndRepresentativeness>
+      <dataSource>Industry average data</dataSource>
+      <completeness>
+        <completenessDescription xml:lang="en">
+          All relevant inputs and outputs included
+        </completenessDescription>
+      </completeness>
+    </dataSourcesTreatmentAndRepresentativeness>
+
+    <validation>
+      <review type="Independent internal review">
+        <reviewDetails xml:lang="en">
+          Dataset reviewed by LCA expert
+        </reviewDetails>
+      </review>
+    </validation>
+  </modellingAndValidation>
+
+  <!-- ========================================
+       管理情報
+       ======================================== -->
+  <administrativeInformation>
+    <dataEntryBy>
+      <timeStamp>2023-01-15T10:30:00</timeStamp>
+    </dataEntryBy>
+    <publicationAndOwnership>
+      <dataSetVersion>01.00.000</dataSetVersion>
+      <permanentDataSetURI>http://example.org/processes/steel-production-bof</permanentDataSetURI>
+      <licenseType>Free of charge for all users and uses</licenseType>
+    </publicationAndOwnership>
+  </administrativeInformation>
+
+  <!-- ========================================
+       交換データ (Exchanges)
+       ======================================== -->
+  <exchanges>
+    <!-- 参照フロー: 製品出力 (Steel) -->
+    <exchange dataSetInternalID="0">
+      <referenceToFlowDataSet type="flow data set"
+                               refObjectId="11111111-2222-3333-4444-555555555555"
+                               uri="http://example.org/flows/steel">
+        <shortDescription xml:lang="en">Steel</shortDescription>
+      </referenceToFlowDataSet>
+      <meanAmount>1.0</meanAmount>
+      <resultingAmount>1.0</resultingAmount>
+      <dataDerivationTypeStatus>Measured</dataDerivationTypeStatus>
+      <generalComment xml:lang="en">Reference product: 1 kg steel</generalComment>
+    </exchange>
+
+    <!-- 入力フロー: 鉄鉱石 -->
+    <exchange dataSetInternalID="1">
+      <referenceToFlowDataSet type="flow data set"
+                               refObjectId="22222222-3333-4444-5555-666666666666"
+                               uri="http://example.org/flows/iron-ore">
+        <shortDescription xml:lang="en">Iron ore</shortDescription>
+      </referenceToFlowDataSet>
+      <meanAmount>1.58</meanAmount>
+      <resultingAmount>1.58</resultingAmount>
+      <dataDerivationTypeStatus>Calculated</dataDerivationTypeStatus>
+      <generalComment xml:lang="en">Iron ore input per kg steel</generalComment>
+    </exchange>
+
+    <!-- 入力フロー: 石炭 (コークス用) -->
+    <exchange dataSetInternalID="2">
+      <referenceToFlowDataSet type="flow data set"
+                               refObjectId="33333333-4444-5555-6666-777777777777"
+                               uri="http://example.org/flows/coal">
+        <shortDescription xml:lang="en">Coal</shortDescription>
+      </referenceToFlowDataSet>
+      <meanAmount>0.65</meanAmount>
+      <resultingAmount>0.65</resultingAmount>
+      <dataDerivationTypeStatus>Calculated</dataDerivationTypeStatus>
+      <generalComment xml:lang="en">Coal for coke production</generalComment>
+    </exchange>
+
+    <!-- 入力フロー: 電力 -->
+    <exchange dataSetInternalID="3">
+      <referenceToFlowDataSet type="flow data set"
+                               refObjectId="44444444-5555-6666-7777-888888888888"
+                               uri="http://example.org/flows/electricity">
+        <shortDescription xml:lang="en">Electricity</shortDescription>
+      </referenceToFlowDataSet>
+      <meanAmount>0.45</meanAmount>
+      <resultingAmount>0.45</resultingAmount>
+      <dataDerivationTypeStatus>Measured</dataDerivationTypeStatus>
+      <generalComment xml:lang="en">Electricity consumption in kWh per kg steel</generalComment>
+    </exchange>
+
+    <!-- 出力フロー: CO2排出 -->
+    <exchange dataSetInternalID="4">
+      <referenceToFlowDataSet type="flow data set"
+                               refObjectId="55555555-6666-7777-8888-999999999999"
+                               uri="http://example.org/flows/carbon-dioxide">
+        <shortDescription xml:lang="en">Carbon dioxide</shortDescription>
+      </referenceToFlowDataSet>
+      <meanAmount>1.85</meanAmount>
+      <resultingAmount>1.85</resultingAmount>
+      <dataDerivationTypeStatus>Calculated</dataDerivationTypeStatus>
+      <generalComment xml:lang="en">CO2 emissions per kg steel (to air)</generalComment>
+    </exchange>
+
+    <!-- 出力フロー: スラグ (副産物) -->
+    <exchange dataSetInternalID="5">
+      <referenceToFlowDataSet type="flow data set"
+                               refObjectId="66666666-7777-8888-9999-aaaaaaaaaaaa"
+                               uri="http://example.org/flows/slag">
+        <shortDescription xml:lang="en">Slag</shortDescription>
+      </referenceToFlowDataSet>
+      <meanAmount>0.15</meanAmount>
+      <resultingAmount>0.15</resultingAmount>
+      <dataDerivationTypeStatus>Measured</dataDerivationTypeStatus>
+      <generalComment xml:lang="en">Slag as by-product (can be used in construction)</generalComment>
+    </exchange>
+  </exchanges>
+
+</process>

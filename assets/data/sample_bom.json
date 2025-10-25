@@ -1,0 +1,391 @@
+{
+  "product": {
+    "id": "LAPTOP-ECO-2025",
+    "name": "EcoLaptop Pro 2025",
+    "category": "Laptop Computer",
+    "totalMass": 1.85,
+    "unit": "kg"
+  },
+  "components": [
+    {
+      "id": "COMP-001",
+      "name": "ディスプレイモジュール",
+      "nameEn": "Display Module",
+      "mass": 0.35,
+      "percentage": 18.9,
+      "materials": [
+        {
+          "name": "LCDガラス",
+          "nameEn": "LCD Glass",
+          "mass": 0.158,
+          "percentage": 45.1,
+          "category": "Glass",
+          "casNumber": "65997-17-3",
+          "embodiedCarbon": 1.2,
+          "recyclable": true
+        },
+        {
+          "name": "ABSプラスチック",
+          "nameEn": "ABS Plastic",
+          "mass": 0.105,
+          "percentage": 30.0,
+          "category": "Polymer",
+          "casNumber": "9003-56-9",
+          "embodiedCarbon": 3.4,
+          "recyclable": true
+        },
+        {
+          "name": "電子部品",
+          "nameEn": "Electronic Components",
+          "mass": 0.053,
+          "percentage": 15.1,
+          "category": "Electronics",
+          "embodiedCarbon": 12.5,
+          "recyclable": false
+        },
+        {
+          "name": "アルミフレーム",
+          "nameEn": "Aluminum Frame",
+          "mass": 0.035,
+          "percentage": 10.0,
+          "category": "Metal",
+          "casNumber": "7429-90-5",
+          "embodiedCarbon": 8.2,
+          "recyclable": true,
+          "recycledContent": 50
+        }
+      ],
+      "environmentalImpact": {
+        "carbonFootprint": 8.7,
+        "energy": 125.5,
+        "water": 285
+      }
+    },
+    {
+      "id": "COMP-002",
+      "name": "マザーボード",
+      "nameEn": "Motherboard",
+      "mass": 0.28,
+      "percentage": 15.1,
+      "materials": [
+        {
+          "name": "PCB (FR-4)",
+          "nameEn": "PCB (FR-4)",
+          "mass": 0.098,
+          "percentage": 35.0,
+          "category": "Composite",
+          "embodiedCarbon": 8.5,
+          "recyclable": false
+        },
+        {
+          "name": "シリコン (IC)",
+          "nameEn": "Silicon (ICs)",
+          "mass": 0.042,
+          "percentage": 15.0,
+          "category": "Semiconductor",
+          "casNumber": "7440-21-3",
+          "embodiedCarbon": 15.2,
+          "recyclable": false
+        },
+        {
+          "name": "銅 (配線)",
+          "nameEn": "Copper (Traces)",
+          "mass": 0.056,
+          "percentage": 20.0,
+          "category": "Metal",
+          "casNumber": "7440-50-8",
+          "embodiedCarbon": 3.8,
+          "recyclable": true,
+          "recycledContent": 30
+        },
+        {
+          "name": "プラスチック部品",
+          "nameEn": "Plastic Components",
+          "mass": 0.056,
+          "percentage": 20.0,
+          "category": "Polymer",
+          "embodiedCarbon": 2.1,
+          "recyclable": true
+        },
+        {
+          "name": "はんだ (SAC305)",
+          "nameEn": "Solder (SAC305)",
+          "mass": 0.014,
+          "percentage": 5.0,
+          "category": "Alloy",
+          "embodiedCarbon": 0.8,
+          "recyclable": true
+        }
+      ],
+      "environmentalImpact": {
+        "carbonFootprint": 22.5,
+        "energy": 285.3,
+        "water": 520
+      }
+    },
+    {
+      "id": "COMP-003",
+      "name": "バッテリーパック",
+      "nameEn": "Battery Pack",
+      "mass": 0.32,
+      "percentage": 17.3,
+      "materials": [
+        {
+          "name": "リチウムポリマーセル",
+          "nameEn": "Lithium Polymer Cells",
+          "mass": 0.208,
+          "percentage": 65.0,
+          "category": "Electrochemical",
+          "embodiedCarbon": 12.8,
+          "recyclable": true,
+          "hazardous": true
+        },
+        {
+          "name": "アルミケース",
+          "nameEn": "Aluminum Case",
+          "mass": 0.064,
+          "percentage": 20.0,
+          "category": "Metal",
+          "casNumber": "7429-90-5",
+          "embodiedCarbon": 9.6,
+          "recyclable": true,
+          "recycledContent": 50
+        },
+        {
+          "name": "保護回路基板",
+          "nameEn": "Protection Circuit Board",
+          "mass": 0.032,
+          "percentage": 10.0,
+          "category": "Electronics",
+          "embodiedCarbon": 3.2,
+          "recyclable": false
+        },
+        {
+          "name": "配線・コネクタ",
+          "nameEn": "Wiring and Connectors",
+          "mass": 0.016,
+          "percentage": 5.0,
+          "category": "Mixed",
+          "embodiedCarbon": 1.2,
+          "recyclable": true
+        }
+      ],
+      "environmentalImpact": {
+        "carbonFootprint": 18.2,
+        "energy": 455.8,
+        "water": 1850
+      }
+    },
+    {
+      "id": "COMP-004",
+      "name": "筐体 (トップ)",
+      "nameEn": "Top Case",
+      "mass": 0.42,
+      "percentage": 22.7,
+      "materials": [
+        {
+          "name": "アルミ合金 6061",
+          "nameEn": "Aluminum Alloy 6061",
+          "mass": 0.315,
+          "percentage": 75.0,
+          "category": "Metal",
+          "embodiedCarbon": 10.5,
+          "recyclable": true,
+          "recycledContent": 50
+        },
+        {
+          "name": "キーボードアセンブリ",
+          "nameEn": "Keyboard Assembly",
+          "mass": 0.063,
+          "percentage": 15.0,
+          "category": "Mixed",
+          "embodiedCarbon": 4.2,
+          "recyclable": false
+        },
+        {
+          "name": "タッチパッド",
+          "nameEn": "Touchpad",
+          "mass": 0.042,
+          "percentage": 10.0,
+          "category": "Electronics",
+          "embodiedCarbon": 2.1,
+          "recyclable": false
+        }
+      ],
+      "environmentalImpact": {
+        "carbonFootprint": 12.8,
+        "energy": 195.4,
+        "water": 380
+      }
+    },
+    {
+      "id": "COMP-005",
+      "name": "筐体 (ボトム)",
+      "nameEn": "Bottom Case",
+      "mass": 0.35,
+      "percentage": 18.9,
+      "materials": [
+        {
+          "name": "アルミ合金 6061",
+          "nameEn": "Aluminum Alloy 6061",
+          "mass": 0.35,
+          "percentage": 100.0,
+          "category": "Metal",
+          "embodiedCarbon": 10.5,
+          "recyclable": true,
+          "recycledContent": 50
+        }
+      ],
+      "environmentalImpact": {
+        "carbonFootprint": 10.7,
+        "energy": 162.8,
+        "water": 315
+      }
+    },
+    {
+      "id": "COMP-006",
+      "name": "SSD (512GB)",
+      "nameEn": "SSD (512GB NVMe)",
+      "mass": 0.008,
+      "percentage": 0.4,
+      "materials": [
+        {
+          "name": "NANDフラッシュメモリ",
+          "nameEn": "NAND Flash Memory",
+          "mass": 0.0048,
+          "percentage": 60.0,
+          "category": "Semiconductor",
+          "embodiedCarbon": 25.0,
+          "recyclable": false
+        },
+        {
+          "name": "コントローラIC",
+          "nameEn": "Controller IC",
+          "mass": 0.0012,
+          "percentage": 15.0,
+          "category": "Semiconductor",
+          "embodiedCarbon": 18.5,
+          "recyclable": false
+        },
+        {
+          "name": "PCB",
+          "nameEn": "PCB",
+          "mass": 0.0016,
+          "percentage": 20.0,
+          "category": "Composite",
+          "embodiedCarbon": 1.2,
+          "recyclable": false
+        },
+        {
+          "name": "金属部品",
+          "nameEn": "Metal Components",
+          "mass": 0.0004,
+          "percentage": 5.0,
+          "category": "Metal",
+          "embodiedCarbon": 0.3,
+          "recyclable": true
+        }
+      ],
+      "environmentalImpact": {
+        "carbonFootprint": 1.2,
+        "energy": 12.5,
+        "water": 28
+      }
+    },
+    {
+      "id": "COMP-007",
+      "name": "その他部品",
+      "nameEn": "Miscellaneous Components",
+      "mass": 0.13,
+      "percentage": 7.0,
+      "materials": [
+        {
+          "name": "銅配線",
+          "nameEn": "Copper Wiring",
+          "mass": 0.039,
+          "percentage": 30.0,
+          "category": "Metal",
+          "casNumber": "7440-50-8",
+          "embodiedCarbon": 2.8,
+          "recyclable": true
+        },
+        {
+          "name": "スチールファスナー",
+          "nameEn": "Steel Fasteners",
+          "mass": 0.033,
+          "percentage": 25.0,
+          "category": "Metal",
+          "embodiedCarbon": 1.5,
+          "recyclable": true
+        },
+        {
+          "name": "プラスチック絶縁体",
+          "nameEn": "Plastic Insulators",
+          "mass": 0.026,
+          "percentage": 20.0,
+          "category": "Polymer",
+          "embodiedCarbon": 0.8,
+          "recyclable": true
+        },
+        {
+          "name": "サーマルペースト/パッド",
+          "nameEn": "Thermal Paste/Pads",
+          "mass": 0.020,
+          "percentage": 15.0,
+          "category": "Composite",
+          "embodiedCarbon": 0.5,
+          "recyclable": false
+        },
+        {
+          "name": "その他",
+          "nameEn": "Other",
+          "mass": 0.013,
+          "percentage": 10.0,
+          "category": "Mixed",
+          "embodiedCarbon": 0.3,
+          "recyclable": false
+        }
+      ],
+      "environmentalImpact": {
+        "carbonFootprint": 0.5,
+        "energy": 8.5,
+        "water": 15
+      }
+    }
+  ],
+  "summary": {
+    "totalCarbonFootprint": 74.1,
+    "totalEmbodiedEnergy": 1237.3,
+    "totalWaterConsumption": 3393,
+    "recyclabilityRate": 88.5,
+    "recycledContentRate": 35.0,
+    "materialBreakdown": {
+      "metals": {
+        "mass": 0.847,
+        "percentage": 45.8
+      },
+      "plastics": {
+        "mass": 0.292,
+        "percentage": 15.8
+      },
+      "electronics": {
+        "mass": 0.350,
+        "percentage": 18.9
+      },
+      "battery": {
+        "mass": 0.320,
+        "percentage": 17.3
+      },
+      "other": {
+        "mass": 0.041,
+        "percentage": 2.2
+      }
+    }
+  },
+  "compliance": {
+    "rohs": true,
+    "reach": true,
+    "energyStar": true,
+    "epeatRating": "Gold"
+  }
+}

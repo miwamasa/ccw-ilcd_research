@@ -1,0 +1,164 @@
+{
+  "terms": [
+    {
+      "id": "bom",
+      "term": "BOM",
+      "fullName": "Bill of Materials",
+      "ja": "部品構成表",
+      "definition": "製品を構成するすべての部品、材料、サブアセンブリのリスト。製品の階層構造を示し、各部品の数量、仕様、材料情報を含む。",
+      "category": "基礎概念"
+    },
+    {
+      "id": "bop",
+      "term": "BOP",
+      "fullName": "Bill of Process",
+      "ja": "工程表",
+      "definition": "製品を製造するために必要なすべての工程、作業、リソースのリスト。各工程の順序、使用設備、エネルギー消費、作業時間を含む。",
+      "category": "基礎概念"
+    },
+    {
+      "id": "ilcd",
+      "term": "ILCD",
+      "fullName": "International Reference Life Cycle Data System",
+      "ja": "国際参照LCIデータシステム",
+      "definition": "欧州委員会JRCが開発したLCAデータ交換のための包括的なシステム。XMLベースのデータフォーマットと、8種類のデータセットタイプを定義。",
+      "category": "標準・フォーマット"
+    },
+    {
+      "id": "iso82474",
+      "term": "ISO/IEC 82474",
+      "fullName": "Material declaration standard",
+      "ja": "材料宣言標準",
+      "definition": "電気・電子製品およびその部品の材料宣言に関する国際標準。XMLベースのデータ交換フォーマットと、宣言可能物質リスト（DSL）を規定。",
+      "category": "標準・フォーマット"
+    },
+    {
+      "id": "lca",
+      "term": "LCA",
+      "fullName": "Life Cycle Assessment",
+      "ja": "ライフサイクルアセスメント",
+      "definition": "製品やサービスのライフサイクル全体にわたる環境影響を定量的に評価する手法。ISO 14040およびISO 14044で標準化されている。",
+      "category": "環境評価"
+    },
+    {
+      "id": "lci",
+      "term": "LCI",
+      "fullName": "Life Cycle Inventory",
+      "ja": "ライフサイクルインベントリ",
+      "definition": "製品のライフサイクル全体での投入（エネルギー、材料）と排出（大気、水、廃棄物）のデータを収集・計算するフェーズ。",
+      "category": "環境評価"
+    },
+    {
+      "id": "lcia",
+      "term": "LCIA",
+      "fullName": "Life Cycle Impact Assessment",
+      "ja": "ライフサイクル影響評価",
+      "definition": "LCIで収集したデータを環境影響カテゴリ（地球温暖化、資源枯渇など）に変換し、環境への影響を評価するフェーズ。",
+      "category": "環境評価"
+    },
+    {
+      "id": "dsl",
+      "term": "DSL",
+      "fullName": "Declarable Substance List",
+      "ja": "宣言可能物質リスト",
+      "definition": "IEC 82474標準で定義される、規制対象または懸念される物質のリスト。製品に含まれる場合は宣言する必要がある。",
+      "category": "規制・コンプライアンス"
+    },
+    {
+      "id": "rohs",
+      "term": "RoHS",
+      "fullName": "Restriction of Hazardous Substances",
+      "ja": "特定有害物質使用制限指令",
+      "definition": "欧州連合の指令で、電気電子機器における特定有害物質の使用を制限。現在10物質が規制対象。",
+      "category": "規制・コンプライアンス"
+    },
+    {
+      "id": "reach",
+      "term": "REACH",
+      "fullName": "Registration, Evaluation, Authorization and Restriction of Chemicals",
+      "ja": "化学物質の登録、評価、認可、制限に関する規則",
+      "definition": "欧州連合の化学物質規制。高懸念物質（SVHC）リストを定期的に更新し、成形品中0.1重量%超で届出義務。",
+      "category": "規制・コンプライアンス"
+    },
+    {
+      "id": "epd",
+      "term": "EPD",
+      "fullName": "Environmental Product Declaration",
+      "ja": "環境製品宣言",
+      "definition": "製品の環境性能を標準化された方法（ISO 14025）で表示する第三者認証文書。LCA結果に基づいて作成される。",
+      "category": "環境評価"
+    },
+    {
+      "id": "uuid",
+      "term": "UUID",
+      "fullName": "Universally Unique Identifier",
+      "ja": "普遍的一意識別子",
+      "definition": "128ビットの一意識別子。ILCDではすべてのデータセットにUUIDを割り当て、異なるデータベース間での一意な識別を実現。",
+      "category": "技術"
+    },
+    {
+      "id": "cas",
+      "term": "CAS Number",
+      "fullName": "Chemical Abstracts Service Number",
+      "ja": "CAS登録番号",
+      "definition": "化学物質を一意に識別するための番号。形式はXXXXX-XX-X。材料宣言とLCAデータのマッピングに使用。",
+      "category": "技術"
+    },
+    {
+      "id": "xml",
+      "term": "XML",
+      "fullName": "eXtensible Markup Language",
+      "ja": "拡張可能マークアップ言語",
+      "definition": "構造化されたデータを表現するためのマークアップ言語。ILCDとISO/IEC 82474の両方で使用される。",
+      "category": "技術"
+    },
+    {
+      "id": "functional_unit",
+      "term": "Functional Unit",
+      "fullName": "Functional Unit",
+      "ja": "機能単位",
+      "definition": "LCAで比較の基準となる単位。例：「1台のラップトップPCを5年間使用する機能」。すべての環境影響はこの機能単位に対して計算される。",
+      "category": "環境評価"
+    },
+    {
+      "id": "carbon_footprint",
+      "term": "Carbon Footprint",
+      "fullName": "Carbon Footprint",
+      "ja": "カーボンフットプリント",
+      "definition": "製品やサービスのライフサイクル全体で排出される温室効果ガスの総量。CO2換算値（CO2-eq）で表現される。",
+      "category": "環境評価"
+    },
+    {
+      "id": "embodied_energy",
+      "term": "Embodied Energy",
+      "fullName": "Embodied Energy",
+      "ja": "エンボディドエネルギー",
+      "definition": "材料の採掘、製造、輸送に必要なエネルギーの総量。材料に「内包された」エネルギーとして表現される。",
+      "category": "環境評価"
+    },
+    {
+      "id": "circular_economy",
+      "term": "Circular Economy",
+      "fullName": "Circular Economy",
+      "ja": "循環経済",
+      "definition": "資源を循環させ、廃棄物を最小化する経済システム。製品の設計段階から、再利用、修理、リサイクルを考慮する。",
+      "category": "サステナビリティ"
+    },
+    {
+      "id": "dpp",
+      "term": "DPP",
+      "fullName": "Digital Product Passport",
+      "ja": "デジタル製品パスポート",
+      "definition": "製品の材料構成、環境性能、循環経済情報をデジタルで記録・共有するシステム。EU ESPRで義務化される見込み。",
+      "category": "サステナビリティ"
+    },
+    {
+      "id": "scope3",
+      "term": "Scope 3",
+      "fullName": "Scope 3 Emissions",
+      "ja": "Scope 3排出量",
+      "definition": "GHGプロトコルで定義される、サプライチェーンでの間接的なCO2排出。多くの企業で総排出の80-90%を占める。",
+      "category": "環境評価"
+    }
+  ]
+}

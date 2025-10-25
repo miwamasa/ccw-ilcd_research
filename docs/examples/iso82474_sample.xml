@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ISO/IEC 82474 (旧 IEC 62474) 材料宣言サンプル
+
+  このサンプルは教育目的で作成された簡略化されたISO/IEC 82474形式のXMLです。
+  実際の材料宣言はより詳細な要素を含みます。
+
+  参考: IEC 82474-1:2025 - Material declaration
+-->
+<MaterialDeclaration xmlns="http://std.iec.ch/iec82474"
+                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                     xsi:schemaLocation="http://std.iec.ch/iec82474 IEC82474.xsd"
+                     version="3.0">
+
+  <!-- ========================================
+       宣言情報
+       ======================================== -->
+  <DeclarationInfo>
+    <DeclarationID>MD-2025-001234</DeclarationID>
+    <DeclarationVersion>1.0</DeclarationVersion>
+    <CreationDate>2025-10-25</CreationDate>
+    <EffectiveDate>2025-10-25</EffectiveDate>
+    <ExpirationDate>2026-10-25</ExpirationDate>
+
+    <!-- 宣言者情報 -->
+    <Declarant>
+      <CompanyName>Example Electronics Corporation</CompanyName>
+      <ContactPerson>
+        <Name>Taro Yamada</Name>
+        <Email>taro.yamada@example.com</Email>
+        <Phone>+81-3-1234-5678</Phone>
+      </ContactPerson>
+      <Address>
+        <Street>1-2-3 Marunouchi</Street>
+        <City>Tokyo</City>
+        <PostalCode>100-0005</PostalCode>
+        <Country>JP</Country>
+      </Address>
+    </Declarant>
+
+    <!-- 宣言言語 -->
+    <DeclarationLanguage>en</DeclarationLanguage>
+
+    <!-- 宣言範囲 -->
+    <DeclarationScope>Full Material Declaration</DeclarationScope>
+
+    <!-- 準拠法規 -->
+    <RegulatoryRequirements>
+      <Regulation>
+        <Name>RoHS Directive 2011/65/EU</Name>
+        <Status>Compliant</Status>
+      </Regulation>
+      <Regulation>
+        <Name>REACH Regulation (EC) No 1907/2006</Name>
+        <Status>Compliant</Status>
+      </Regulation>
+    </RegulatoryRequirements>
+  </DeclarationInfo>
+
+  <!-- ========================================
+       製品情報
+       ======================================== -->
+  <Product>
+    <ProductID>PCB-2025-REV-A</ProductID>
+    <ProductName>Printed Circuit Board Assembly</ProductName>
+    <ProductDescription xml:lang="en">
+      Multi-layer PCB with electronic components for industrial control applications
+    </ProductDescription>
+    <ProductDescription xml:lang="ja">
+      産業用制御アプリケーション向け多層PCBと電子部品のアセンブリ
+    </ProductDescription>
+
+    <!-- 製品分類 -->
+    <ProductClassification>
+      <ClassificationSystem>eCl@ss</ClassificationSystem>
+      <ClassificationCode>27-02-30-01</ClassificationCode>
+      <ClassificationName>Printed circuit boards</ClassificationName>
+    </ProductClassification>
+
+    <!-- 製品質量 -->
+    <ProductMass unit="g">125.5</ProductMass>
+
+    <!-- 製造者情報 -->
+    <Manufacturer>
+      <CompanyName>Example Electronics Corporation</CompanyName>
+      <CountryOfOrigin>JP</CountryOfOrigin>
+    </Manufacturer>
+  </Product>
+
+  <!-- ========================================
+       材料構成
+       ======================================== -->
+  <MaterialComposition>
+
+    <!-- コンポーネント1: PCB基板 -->
+    <Component>
+      <ComponentID>COMP-001</ComponentID>
+      <ComponentName>PCB Substrate</ComponentName>
+      <ComponentDescription>FR-4 glass epoxy laminate</ComponentDescription>
+      <ComponentMass unit="g">45.2</ComponentMass>
+      <MassPercent>36.0</MassPercent>
+
+      <!-- 材料リスト -->
+      <Materials>
+        <!-- 材料: エポキシ樹脂 -->
+        <Material>
+          <MaterialID>MAT-001</MaterialID>
+          <MaterialName>Epoxy Resin</MaterialName>
+          <CASNumber>25068-38-6</CASNumber>
+          <MaterialMass unit="g">22.6</MaterialMass>
+          <MassPercent>50.0</MassPercent>
+          <MaterialCategory>Polymer</MaterialCategory>
+
+          <!-- 宣言可能物質の確認 -->
+          <DeclarableSubstances>
+            <SubstancePresent>false</SubstancePresent>
+            <Comment>No declarable substances above threshold</Comment>
+          </DeclarableSubstances>
+        </Material>
+
+        <!-- 材料: ガラス繊維 -->
+        <Material>
+          <MaterialID>MAT-002</MaterialID>
+          <MaterialName>Glass Fiber</MaterialName>
+          <CASNumber>65997-17-3</CASNumber>
+          <MaterialMass unit="g">22.6</MaterialMass>
+          <MassPercent>50.0</MassPercent>
+          <MaterialCategory>Inorganic</MaterialCategory>
+
+          <DeclarableSubstances>
+            <SubstancePresent>false</SubstancePresent>
+          </DeclarableSubstances>
+        </Material>
+      </Materials>
+    </Component>
+
+    <!-- コンポーネント2: 銅配線層 -->
+    <Component>
+      <ComponentID>COMP-002</ComponentID>
+      <ComponentName>Copper Layers</ComponentName>
+      <ComponentDescription>Copper conductor traces and planes</ComponentDescription>
+      <ComponentMass unit="g">32.8</ComponentMass>
+      <MassPercent>26.1</MassPercent>
+
+      <Materials>
+        <Material>
+          <MaterialID>MAT-003</MaterialID>
+          <MaterialName>Copper</MaterialName>
+          <CASNumber>7440-50-8</CASNumber>
+          <MaterialMass unit="g">32.8</MaterialMass>
+          <MassPercent>100.0</MassPercent>
+          <MaterialCategory>Metal</MaterialCategory>
+
+          <DeclarableSubstances>
+            <SubstancePresent>false</SubstancePresent>
+            <Comment>Pure copper, no declarable substances</Comment>
+          </DeclarableSubstances>
+        </Material>
+      </Materials>
+    </Component>
+
+    <!-- コンポーネント3: はんだ -->
+    <Component>
+      <ComponentID>COMP-003</ComponentID>
+      <ComponentName>Solder</ComponentName>
+      <ComponentDescription>Lead-free solder (SAC305)</ComponentDescription>
+      <ComponentMass unit="g">5.5</ComponentMass>
+      <MassPercent>4.4</MassPercent>
+
+      <Materials>
+        <!-- はんだ合金 (Sn/Ag/Cu) -->
+        <Material>
+          <MaterialID>MAT-004</MaterialID>
+          <MaterialName>SAC305 Solder Alloy</MaterialName>
+          <MaterialMass unit="g">5.5</MaterialMass>
+          <MassPercent>100.0</MassPercent>
+          <MaterialCategory>Alloy</MaterialCategory>
+
+          <!-- 合金成分 -->
+          <AlloyComposition>
+            <Element>
+              <ElementName>Tin (Sn)</ElementName>
+              <CASNumber>7440-31-5</CASNumber>
+              <Percentage>96.5</Percentage>
+            </Element>
+            <Element>
+              <ElementName>Silver (Ag)</ElementName>
+              <CASNumber>7440-22-4</CASNumber>
+              <Percentage>3.0</Percentage>
+            </Element>
+            <Element>
+              <ElementName>Copper (Cu)</ElementName>
+              <CASNumber>7440-50-8</CASNumber>
+              <Percentage>0.5</Percentage>
+            </Element>
+          </AlloyComposition>
+
+          <DeclarableSubstances>
+            <SubstancePresent>false</SubstancePresent>
+            <Comment>Lead-free solder, RoHS compliant</Comment>
+          </DeclarableSubstances>
+        </Material>
+      </Materials>
+    </Component>
+
+    <!-- コンポーネント4: 電子部品 -->
+    <Component>
+      <ComponentID>COMP-004</ComponentID>
+      <ComponentName>Electronic Components</ComponentName>
+      <ComponentDescription>Resistors, capacitors, ICs</ComponentDescription>
+      <ComponentMass unit="g">42.0</ComponentMass>
+      <MassPercent>33.5</MassPercent>
+
+      <Materials>
+        <!-- 複合材料 (詳細は部品メーカーの材料宣言を参照) -->
+        <Material>
+          <MaterialID>MAT-005</MaterialID>
+          <MaterialName>Mixed Electronic Components</MaterialName>
+          <MaterialMass unit="g">42.0</MaterialMass>
+          <MassPercent>100.0</MassPercent>
+          <MaterialCategory>Composite</MaterialCategory>
+
+          <!-- 主要成分 -->
+          <MajorConstituents>
+            <Constituent>
+              <Name>Ceramic</Name>
+              <Percentage>45.0</Percentage>
+            </Constituent>
+            <Constituent>
+              <Name>Silicon</Name>
+              <Percentage>25.0</Percentage>
+            </Constituent>
+            <Constituent>
+              <Name>Plastic (Epoxy molding compound)</Name>
+              <Percentage>20.0</Percentage>
+            </Constituent>
+            <Constituent>
+              <Name>Metal (various)</Name>
+              <Percentage>10.0</Percentage>
+            </Constituent>
+          </MajorConstituents>
+
+          <DeclarableSubstances>
+            <SubstancePresent>false</SubstancePresent>
+            <Comment>All components are RoHS and REACH compliant</Comment>
+          </DeclarableSubstances>
+        </Material>
+      </Materials>
+    </Component>
+  </MaterialComposition>
+
+  <!-- ========================================
+       宣言可能物質リスト (DSL) チェック
+       ======================================== -->
+  <DeclarableSubstanceList>
+    <DSLReference>IEC 82474 Declarable Substance List v25.0</DSLReference>
+    <DSLDate>2025-01-01</DSLDate>
+
+    <!-- すべての宣言可能物質の評価結果 -->
+    <SubstanceEvaluation>
+      <TotalSubstancesChecked>245</TotalSubstancesChecked>
+      <SubstancesFound>0</SubstancesFound>
+      <ThresholdLevel>0.1% (1000 ppm)</ThresholdLevel>
+
+      <EvaluationComment xml:lang="en">
+        This product has been evaluated against the IEC 82474 Declarable Substance List.
+        No substances above the threshold level of 0.1% by weight were found.
+      </EvaluationComment>
+      <EvaluationComment xml:lang="ja">
+        本製品はIEC 82474宣言可能物質リストに対して評価されました。
+        重量比0.1%の閾値を超える物質は検出されませんでした。
+      </EvaluationComment>
+    </SubstanceEvaluation>
+
+    <!-- 特定規制物質の確認 -->
+    <SpecificSubstanceCheck>
+      <Substance>
+        <Name>Lead (Pb)</Name>
+        <CASNumber>7439-92-1</CASNumber>
+        <Present>false</Present>
+        <Concentration unit="ppm">0</Concentration>
+        <RegulatoryLimit>1000 ppm (RoHS)</RegulatoryLimit>
+      </Substance>
+      <Substance>
+        <Name>Mercury (Hg)</Name>
+        <CASNumber>7439-97-6</CASNumber>
+        <Present>false</Present>
+        <Concentration unit="ppm">0</Concentration>
+        <RegulatoryLimit>1000 ppm (RoHS)</RegulatoryLimit>
+      </Substance>
+      <Substance>
+        <Name>Cadmium (Cd)</Name>
+        <CASNumber>7440-43-9</CASNumber>
+        <Present>false</Present>
+        <Concentration unit="ppm">0</Concentration>
+        <RegulatoryLimit>100 ppm (RoHS)</RegulatoryLimit>
+      </Substance>
+      <Substance>
+        <Name>Hexavalent Chromium (Cr VI)</Name>
+        <CASNumber>18540-29-9</CASNumber>
+        <Present>false</Present>
+        <Concentration unit="ppm">0</Concentration>
+        <RegulatoryLimit>1000 ppm (RoHS)</RegulatoryLimit>
+      </Substance>
+    </SpecificSubstanceCheck>
+  </DeclarableSubstanceList>
+
+  <!-- ========================================
+       適合宣言
+       ======================================== -->
+  <ComplianceDeclaration>
+    <Declaration>
+      <Statement xml:lang="en">
+        This material declaration confirms that the product described herein is compliant
+        with RoHS Directive 2011/65/EU and REACH Regulation (EC) No 1907/2006 as of the
+        effective date of this declaration.
+      </Statement>
+      <Statement xml:lang="ja">
+        この材料宣言は、本書に記載された製品が本宣言の発効日時点でRoHS指令2011/65/EU
+        およびREACH規則(EC) No 1907/2006に適合していることを確認します。
+      </Statement>
+    </Declaration>
+
+    <AuthorizedSignature>
+      <SignerName>Taro Yamada</SignerName>
+      <SignerTitle>Quality Assurance Manager</SignerTitle>
+      <SignatureDate>2025-10-25</SignatureDate>
+      <CompanyName>Example Electronics Corporation</CompanyName>
+    </AuthorizedSignature>
+  </ComplianceDeclaration>
+
+</MaterialDeclaration>

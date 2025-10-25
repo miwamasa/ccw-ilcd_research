@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  BOM (Bill of Materials) サンプル
+
+  このサンプルは、製品構成情報を表す標準的なBOM XMLフォーマットです。
+  教育目的で作成された簡略化されたBOMです。
+
+  このBOMデータは、ILCD形式への変換やISO/IEC 82474材料宣言の
+  ベースデータとして使用されます。
+-->
+<BillOfMaterials xmlns="http://example.org/bom/1.0"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 version="1.0">
+
+  <!-- ========================================
+       BOMヘッダー情報
+       ======================================== -->
+  <BOMHeader>
+    <BOMID>BOM-2025-LAPTOP-001</BOMID>
+    <BOMVersion>2.5</BOMVersion>
+    <CreationDate>2025-10-25</CreationDate>
+    <LastModified>2025-10-25T14:30:00Z</LastModified>
+    <Status>Released</Status>
+
+    <!-- 製品情報 -->
+    <ProductInfo>
+      <ProductID>LP-2025-PRO</ProductID>
+      <ProductName>EcoLaptop Pro 2025</ProductName>
+      <ProductDescription xml:lang="en">
+        15.6-inch professional laptop with sustainable design
+      </ProductDescription>
+      <ProductDescription xml:lang="ja">
+        15.6インチ・プロフェッショナル・ノートPC（サステナブルデザイン）
+      </ProductDescription>
+      <ProductFamily>Laptop Computers</ProductFamily>
+      <ModelNumber>ELP-2025-PRO-15</ModelNumber>
+    </ProductInfo>
+
+    <!-- 作成者情報 -->
+    <CreatedBy>
+      <Organization>Example Computer Corp.</Organization>
+      <Department>Product Engineering</Department>
+      <Engineer>Jane Smith</Engineer>
+      <Contact>jane.smith@examplecomp.com</Contact>
+    </CreatedBy>
+
+    <!-- BOMタイプ -->
+    <BOMType>Manufacturing BOM (MBOM)</BOMType>
+    <BOMPurpose>Production and Environmental Analysis</BOMPurpose>
+  </BOMHeader>
+
+  <!-- ========================================
+       BOM構造 (階層構造)
+       ======================================== -->
+  <BOMStructure>
+
+    <!-- レベル0: 最終製品 -->
+    <Item level="0">
+      <ItemID>0000</ItemID>
+      <PartNumber>LP-2025-PRO-ASSY</PartNumber>
+      <Description>Complete laptop assembly</Description>
+      <Quantity>1</Quantity>
+      <Unit>EA</Unit>
+      <Weight unit="kg">1.85</Weight>
+      <ItemType>Assembly</ItemType>
+      <EnvironmentalAttributes>
+        <Recyclable>true</Recyclable>
+        <RecycledContent percentage="35.0"/>
+        <EnergyStarCompliant>true</EnergyStarCompliant>
+      </EnvironmentalAttributes>
+    </Item>
+
+    <!-- レベル1: 主要サブアセンブリ -->
+
+    <!-- 1.1 ディスプレイモジュール -->
+    <Item level="1" parentID="0000">
+      <ItemID>1001</ItemID>
+      <PartNumber>DISP-15.6-FHD</PartNumber>
+      <Description>15.6" FHD LCD display module</Description>
+      <Quantity>1</Quantity>
+      <Unit>EA</Unit>
+      <Weight unit="kg">0.35</Weight>
+      <ItemType>Purchased Assembly</ItemType>
+      <Supplier>
+        <SupplierName>Display Solutions Inc.</SupplierName>
+        <SupplierID>SUP-001</SupplierID>
+        <CountryOfOrigin>KR</CountryOfOrigin>
+      </Supplier>
+      <MaterialComposition>
+        <Material>
+          <MaterialName>LCD Glass</MaterialName>
+          <MaterialType>Glass</MaterialType>
+          <Percentage>45.0</Percentage>
+          <Weight unit="kg">0.158</Weight>
+        </Material>
+        <Material>
+          <MaterialName>Plastic Housing</MaterialName>
+          <MaterialType>ABS Polymer</MaterialType>
+          <Percentage>30.0</Percentage>
+          <Weight unit="kg">0.105</Weight>
+        </Material>
+        <Material>
+          <MaterialName>Electronic Components</MaterialName>
+          <MaterialType>Mixed Electronics</MaterialType>
+          <Percentage>15.0</Percentage>
+          <Weight unit="kg">0.053</Weight>
+        </Material>
+        <Material>
+          <MaterialName>Metal Frame</MaterialName>
+          <MaterialType>Aluminum Alloy</MaterialType>
+          <Percentage>10.0</Percentage>
+          <Weight unit="kg">0.035</Weight>
+        </Material>
+      </MaterialComposition>
+      <EnvironmentalData>
+        <EmbodiedEnergy unit="MJ">125.5</EmbodiedEnergy>
+        <CarbonFootprint unit="kg-CO2e">8.7</CarbonFootprint>
+      </EnvironmentalData>
+    </Item>
+
+    <!-- 1.2 マザーボード -->
+    <Item level="1" parentID="0000">
+      <ItemID>1002</ItemID>
+      <PartNumber>MB-2025-PRO</PartNumber>
+      <Description>Main logic board with CPU, RAM, chipset</Description>
+      <Quantity>1</Quantity>
+      <Unit>EA</Unit>
+      <Weight unit="kg">0.28</Weight>
+      <ItemType>Manufactured Assembly</ItemType>
+      <Supplier>
+        <SupplierName>Tech Components Ltd.</SupplierName>
+        <SupplierID>SUP-002</SupplierID>
+        <CountryOfOrigin>TW</CountryOfOrigin>
+      </Supplier>
+      <MaterialComposition>
+        <Material>
+          <MaterialName>PCB (FR-4)</MaterialName>
+          <MaterialType>Composite</MaterialType>
+          <Percentage>35.0</Percentage>
+          <Weight unit="kg">0.098</Weight>
+          <CASNumber>Various</CASNumber>
+        </Material>
+        <Material>
+          <MaterialName>Silicon (ICs)</MaterialName>
+          <MaterialType>Semiconductor</MaterialType>
+          <Percentage>15.0</Percentage>
+          <Weight unit="kg">0.042</Weight>
+        </Material>
+        <Material>
+          <MaterialName>Copper (Traces/Connectors)</MaterialName>
+          <MaterialType>Metal</MaterialType>
+          <Percentage>20.0</Percentage>
+          <Weight unit="kg">0.056</Weight>
+          <CASNumber>7440-50-8</CASNumber>
+        </Material>
+        <Material>
+          <MaterialName>Plastic Components</MaterialName>
+          <MaterialType>Polymer Mix</MaterialType>
+          <Percentage>20.0</Percentage>
+          <Weight unit="kg">0.056</Weight>
+        </Material>
+        <Material>
+          <MaterialName>Solder (SAC305)</MaterialName>
+          <MaterialType>Metal Alloy</MaterialType>
+          <Percentage>5.0</Percentage>
+          <Weight unit="kg">0.014</Weight>
+        </Material>
+        <Material>
+          <MaterialName>Other Materials</MaterialName>
+          <MaterialType>Mixed</MaterialType>
+          <Percentage>5.0</Percentage>
+          <Weight unit="kg">0.014</Weight>
+        </Material>
+      </MaterialComposition>
+      <EnvironmentalData>
+        <EmbodiedEnergy unit="MJ">285.3</EmbodiedEnergy>
+        <CarbonFootprint unit="kg-CO2e">22.5</CarbonFootprint>
+      </EnvironmentalData>
+      <ComplianceInfo>
+        <RoHSCompliant>true</RoHSCompliant>
+        <REACHCompliant>true</REACHCompliant>
+        <MaterialDeclarationRef>MD-2025-MB-PRO</MaterialDeclarationRef>
+      </ComplianceInfo>
+    </Item>
+
+    <!-- 1.3 バッテリーパック -->
+    <Item level="1" parentID="0000">
+      <ItemID>1003</ItemID>
+      <PartNumber>BAT-LIPOLY-65WH</PartNumber>
+      <Description>65Wh Lithium Polymer battery pack</Description>
+      <Quantity>1</Quantity>
+      <Unit>EA</Unit>
+      <Weight unit="kg">0.32</Weight>
+      <ItemType>Purchased Part</ItemType>
+      <Supplier>
+        <SupplierName>Power Systems Corp.</SupplierName>
+        <SupplierID>SUP-003</SupplierID>
+        <CountryOfOrigin>CN</CountryOfOrigin>
+      </Supplier>
+      <MaterialComposition>
+        <Material>
+          <MaterialName>Lithium Polymer Cells</MaterialName>
+          <MaterialType>Electrochemical</MaterialType>
+          <Percentage>65.0</Percentage>
+          <Weight unit="kg">0.208</Weight>
+        </Material>
+        <Material>
+          <MaterialName>Aluminum Case</MaterialName>
+          <MaterialType>Metal</MaterialType>
+          <Percentage>20.0</Percentage>
+          <Weight unit="kg">0.064</Weight>
+          <CASNumber>7429-90-5</CASNumber>
+        </Material>
+        <Material>
+          <MaterialName>Circuit Protection Board</MaterialName>
+          <MaterialType>Electronics</MaterialType>
+          <Percentage>10.0</Percentage>
+          <Weight unit="kg">0.032</Weight>
+        </Material>
+        <Material>
+          <MaterialName>Wiring and Connectors</MaterialName>
+          <MaterialType>Mixed</MaterialType>
+          <Percentage>5.0</Percentage>
+          <Weight unit="kg">0.016</Weight>
+        </Material>
+      </MaterialComposition>
+      <EnvironmentalData>
+        <EmbodiedEnergy unit="MJ">455.8</EmbodiedEnergy>
+        <CarbonFootprint unit="kg-CO2e">18.2</CarbonFootprint>
+      </EnvironmentalData>
+      <HazardousInfo>
+        <ContainsHazardousMaterial>true</ContainsHazardousMaterial>
+        <HazardClass>Lithium Ion Battery</HazardClass>
+        <TransportRegulation>UN3480</TransportRegulation>
+        <RecyclingRequired>true</RecyclingRequired>
+      </HazardousInfo>
+    </Item>
+
+    <!-- 1.4 筐体（トップケース） -->
+    <Item level="1" parentID="0000">
+      <ItemID>1004</ItemID>
+      <PartNumber>CASE-TOP-ALU</PartNumber>
+      <Description>Top case with keyboard and touchpad</Description>
+      <Quantity>1</Quantity>
+      <Unit>EA</Unit>
+      <Weight unit="kg">0.42</Weight>
+      <ItemType>Manufactured Part</ItemType>
+      <ManufacturingProcess>
+        <ProcessType>CNC Machining</ProcessType>
+        <ProcessDescription>Machined from aluminum billet</ProcessDescription>
+      </ManufacturingProcess>
+      <MaterialComposition>
+        <Material>
+          <MaterialName>Aluminum Alloy 6061</MaterialName>
+          <MaterialType>Metal</MaterialType>
+          <Percentage>75.0</Percentage>
+          <Weight unit="kg">0.315</Weight>
+          <CASNumber>N/A (Alloy)</CASNumber>
+          <RecycledContent percentage="50.0"/>
+        </Material>
+        <Material>
+          <MaterialName>Keyboard Assembly</MaterialName>
+          <MaterialType>Mixed</MaterialType>
+          <Percentage>15.0</Percentage>
+          <Weight unit="kg">0.063</Weight>
+        </Material>
+        <Material>
+          <MaterialName>Touchpad Assembly</MaterialName>
+          <MaterialType>Mixed</MaterialType>
+          <Percentage>10.0</Percentage>
+          <Weight unit="kg">0.042</Weight>
+        </Material>
+      </MaterialComposition>
+      <EnvironmentalData>
+        <EmbodiedEnergy unit="MJ">195.4</EmbodiedEnergy>
+        <CarbonFootprint unit="kg-CO2e">12.8</CarbonFootprint>
+        <ManufacturingWaste unit="kg">0.18</ManufacturingWaste>
+        <WasteRecycled percentage="95.0"/>
+      </EnvironmentalData>
+    </Item>
+
+    <!-- 1.5 筐体（ボトムケース） -->
+    <Item level="1" parentID="0000">
+      <ItemID>1005</ItemID>
+      <PartNumber>CASE-BOTTOM-ALU</PartNumber>
+      <Description>Bottom case housing</Description>
+      <Quantity>1</Quantity>
+      <Unit>EA</Unit>
+      <Weight unit="kg">0.35</Weight>
+      <ItemType>Manufactured Part</ItemType>
+      <MaterialComposition>
+        <Material>
+          <MaterialName>Aluminum Alloy 6061</MaterialName>
+          <MaterialType>Metal</MaterialType>
+          <Percentage>100.0</Percentage>
+          <Weight unit="kg">0.35</Weight>
+          <RecycledContent percentage="50.0"/>
+        </Material>
+      </MaterialComposition>
+      <EnvironmentalData>
+        <EmbodiedEnergy unit="MJ">162.8</EmbodiedEnergy>
+        <CarbonFootprint unit="kg-CO2e">10.7</CarbonFootprint>
+      </EnvironmentalData>
+    </Item>
+
+    <!-- 1.6 ストレージ (SSD) -->
+    <Item level="1" parentID="0000">
+      <ItemID>1006</ItemID>
+      <PartNumber>SSD-512GB-NVME</PartNumber>
+      <Description>512GB NVMe SSD</Description>
+      <Quantity>1</Quantity>
+      <Unit>EA</Unit>
+      <Weight unit="kg">0.008</Weight>
+      <ItemType>Purchased Part</ItemType>
+      <Supplier>
+        <SupplierName>Storage Tech Inc.</SupplierName>
+        <SupplierID>SUP-004</SupplierID>
+        <CountryOfOrigin>KR</CountryOfOrigin>
+      </Supplier>
+      <MaterialComposition>
+        <Material>
+          <MaterialName>NAND Flash Memory</MaterialName>
+          <MaterialType>Semiconductor</MaterialType>
+          <Percentage>60.0</Percentage>
+          <Weight unit="kg">0.0048</Weight>
+        </Material>
+        <Material>
+          <MaterialName>Controller IC</MaterialName>
+          <MaterialType>Semiconductor</MaterialType>
+          <Percentage>15.0</Percentage>
+          <Weight unit="kg">0.0012</Weight>
+        </Material>
+        <Material>
+          <MaterialName>PCB</MaterialName>
+          <MaterialType>Composite</MaterialType>
+          <Percentage>20.0</Percentage>
+          <Weight unit="kg">0.0016</Weight>
+        </Material>
+        <Material>
+          <MaterialName>Metal Components</MaterialName>
+          <MaterialType>Mixed Metals</MaterialType>
+          <Percentage>5.0</Percentage>
+          <Weight unit="kg">0.0004</Weight>
+        </Material>
+      </MaterialComposition>
+      <EnvironmentalData>
+        <EmbodiedEnergy unit="MJ">12.5</EmbodiedEnergy>
+        <CarbonFootprint unit="kg-CO2e">1.2</CarbonFootprint>
+      </EnvironmentalData>
+    </Item>
+
+    <!-- 1.7 その他コンポーネント -->
+    <Item level="1" parentID="0000">
+      <ItemID>1007</ItemID>
+      <PartNumber>MISC-COMPONENTS</PartNumber>
+      <Description>Cables, screws, thermal management, etc.</Description>
+      <Quantity>1</Quantity>
+      <Unit>LOT</Unit>
+      <Weight unit="kg">0.13</Weight>
+      <ItemType>Mixed Parts</ItemType>
+      <MaterialComposition>
+        <Material>
+          <MaterialName>Copper Wiring</MaterialName>
+          <MaterialType>Metal</MaterialType>
+          <Percentage>30.0</Percentage>
+          <Weight unit="kg">0.039</Weight>
+        </Material>
+        <Material>
+          <MaterialName>Steel Fasteners</MaterialName>
+          <MaterialType>Metal</MaterialType>
+          <Percentage>25.0</Percentage>
+          <Weight unit="kg">0.033</Weight>
+        </Material>
+        <Material>
+          <MaterialName>Plastic Insulators</MaterialName>
+          <MaterialType>Polymer</MaterialType>
+          <Percentage>20.0</Percentage>
+          <Weight unit="kg">0.026</Weight>
+        </Material>
+        <Material>
+          <MaterialName>Thermal Paste/Pads</MaterialName>
+          <MaterialType>Composite</MaterialType>
+          <Percentage>15.0</Percentage>
+          <Weight unit="kg">0.020</Weight>
+        </Material>
+        <Material>
+          <MaterialName>Other</MaterialName>
+          <MaterialType>Mixed</MaterialType>
+          <Percentage>10.0</Percentage>
+          <Weight unit="kg">0.013</Weight>
+        </Material>
+      </MaterialComposition>
+    </Item>
+
+  </BOMStructure>
+
+  <!-- ========================================
+       BOMサマリー
+       ======================================== -->
+  <BOMSummary>
+    <TotalItems>8</TotalItems>
+    <TotalWeight unit="kg">1.85</TotalWeight>
+    <TopLevelAssemblies>7</TopLevelAssemblies>
+
+    <!-- 材料サマリー -->
+    <MaterialSummary>
+      <MaterialCategory>
+        <Category>Metals</Category>
+        <TotalWeight unit="kg">0.847</TotalWeight>
+        <Percentage>45.8</Percentage>
+      </MaterialCategory>
+      <MaterialCategory>
+        <Category>Plastics/Polymers</Category>
+        <TotalWeight unit="kg">0.292</TotalWeight>
+        <Percentage>15.8</Percentage>
+      </MaterialCategory>
+      <MaterialCategory>
+        <Category>Electronics/Semiconductors</Category>
+        <TotalWeight unit="kg">0.350</TotalWeight>
+        <Percentage>18.9</Percentage>
+      </MaterialCategory>
+      <MaterialCategory>
+        <Category>Battery</Category>
+        <TotalWeight unit="kg">0.320</TotalWeight>
+        <Percentage>17.3</Percentage>
+      </MaterialCategory>
+      <MaterialCategory>
+        <Category>Other</Category>
+        <TotalWeight unit="kg">0.041</TotalWeight>
+        <Percentage>2.2</Percentage>
+      </MaterialCategory>
+    </MaterialSummary>
+
+    <!-- 環境サマリー -->
+    <EnvironmentalSummary>
+      <TotalEmbodiedEnergy unit="MJ">1237.3</TotalEmbodiedEnergy>
+      <TotalCarbonFootprint unit="kg-CO2e">74.1</TotalCarbonFootprint>
+      <RecycledContentPercentage>35.0</RecycledContentPercentage>
+      <RecyclabilityPercentage>88.5</RecyclabilityPercentage>
+    </EnvironmentalSummary>
+
+    <!-- コンプライアンスサマリー -->
+    <ComplianceSummary>
+      <RoHSCompliant>true</RoHSCompliant>
+      <REACHCompliant>true</REACHCompliant>
+      <EnergyStarCompliant>true</EnergyStarCompliant>
+      <EPEATRating>Gold</EPEATRating>
+    </ComplianceSummary>
+  </BOMSummary>
+
+  <!-- ========================================
+       LCAデータ連携情報
+       ======================================== -->
+  <LCAIntegration>
+    <ILCDExportReady>true</ILCDExportReady>
+    <MaterialDeclarationReady>true</MaterialDeclarationReady>
+    <DataQuality>
+      <CompletenessScore>95</CompletenessScore>
+      <AccuracyLevel>High</AccuracyLevel>
+      <DataSource>Primary supplier data</DataSource>
+    </DataQuality>
+    <Notes>
+      This BOM is structured for easy conversion to ILCD format and ISO/IEC 82474 material declarations.
+      All material composition data includes environmental attributes for LCA analysis.
+    </Notes>
+  </LCAIntegration>
+
+</BillOfMaterials>
