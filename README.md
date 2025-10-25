@@ -1,150 +1,214 @@
 # 環境情報のサプライチェーンデータ連携プロジェクト
 
-## 概要
+## 📋 概要
 
-このプロジェクトは、BOM/BOPからILCD形式を経由したLCA分析、およびISO/IEC 82474との関係性について調査し、教育的なコンテンツを提供します。
+このプロジェクトは、**BOM/BOPを基盤とした環境情報のサプライチェーンデータ連携**について、以下の観点から包括的に調査・教育するものです：
 
-### 研究テーマ
+- **ILCD（International Reference Life Cycle Data System）形式**によるLCAデータの標準化
+- **ISO/IEC 82474（材料宣言）**のXMLフォーマットとの関係性
+- サプライチェーン全体での環境情報の流れ
+- LCAツールでの実践的な環境影響分析
 
-「BOM/BOPを基盤とした環境情報のサプライチェーンデータ連携：ILCD形式によるLCA分析とISO/IEC 82474との関係性」
+## 🎯 プロジェクトの目的
 
-## 成果物
+1. **調査レポート**の作成
+   - 技術的に正確で包括的なドキュメント
+   - 実装可能なガイドライン
 
-- **包括的な調査レポート** (`Report.md`) - サプライチェーン全体における環境情報データ連携に関する詳細な技術調査
-- **インタラクティブHTMLガイド** (`interactive_guide.html`) - 視覚的で教育的な学習コンテンツ
-- **技術文書とテストケース** - 実装詳細、データソース、開発ログ
+2. **インタラクティブHTMLガイド**の開発
+   - 視覚的で理解しやすい教育コンテンツ
+   - 実践的なシミュレーションツール
 
-## プロジェクト構成
+3. **高品質なドキュメント**の提供
+   - テストケースとベストプラクティス
+   - 保守可能で拡張可能な設計
+
+## 📁 プロジェクト構成
 
 ```
-ccw-ilcd_research/
-├── README.md                          # プロジェクト概要（このファイル）
-├── instructions.md                    # 詳細な指示書
+environmental-supply-chain-lca/
+├── README.md                          # このファイル
+├── instructions.md                    # Claude Code向け詳細指示書
 ├── Report.md                          # 主要調査レポート
 ├── interactive_guide.html             # インタラクティブHTMLガイド
 ├── TECHNICAL_NOTES.md                 # 技術文書
 ├── DATA_SOURCES.md                    # 情報源リスト
 ├── DEVELOPMENT_LOG.md                 # 開発ログ
 ├── docs/
-│   ├── diagrams/                      # Mermaidダイアグラムのソース
-│   │   ├── data_flow.mmd
-│   │   ├── xml_structure.mmd
-│   │   └── integration_architecture.mmd
+│   ├── diagrams/                      # Mermaidダイアグラム
 │   ├── examples/                      # XMLサンプル
-│   │   ├── ilcd_sample.xml
-│   │   ├── iso82474_sample.xml
-│   │   └── bom_sample.xml
 │   └── references/                    # 参考資料
-│       ├── standards_summary.md
-│       └── terminology.md
 ├── tests/
 │   ├── interactive_guide_tests.md     # HTMLテスト仕様
 │   ├── report_quality_checks.md       # レポート品質チェック
 │   └── validation_results.md          # 検証結果
-└── assets/                            # HTMLで使用する素材
+└── assets/                            # HTMLアセット
     ├── css/
-    │   └── styles.css
     ├── js/
-    │   ├── main.js
-    │   ├── flowchart.js
-    │   ├── simulator.js
-    │   └── utils.js
     └── data/
-        ├── sample_bom.json
-        └── terminology.json
 ```
 
-## 主要トピック
+## 🚀 Claude Codeでの使用方法
 
-### 1. BOM/BOP (Bill of Materials/Bill of Process)
-- 製品構成情報の標準化
-- サプライチェーンにおける役割
-- LCAデータソースとしての活用
+### Step 1: instructions.mdを確認
 
-### 2. ILCD形式 (International Reference Life Cycle Data System)
-- 欧州委員会が開発したLCAデータ交換標準
-- XML構造とデータモデル
-- ISO 14040/14044との準拠関係
+```bash
+# instructions.mdには以下が含まれています：
+# - 詳細な調査範囲と目標
+# - 成果物の要件（レポート・HTML）
+# - 推奨情報源と調査方法
+# - 実装ガイドライン
+# - 品質基準とテスト要件
+```
 
-### 3. ISO/IEC 82474（旧IEC 62474）
+### Step 2: プロジェクトをセットアップ
+
+```bash
+# ディレクトリ構造を作成
+mkdir -p environmental-supply-chain-lca/{docs/{diagrams,examples,references},tests,assets/{css,js,data}}
+cd environmental-supply-chain-lca
+```
+
+### Step 3: Claude Codeに指示
+
+```
+「instructions.mdに従って、環境情報のサプライチェーンデータ連携に関する
+調査レポートとインタラクティブHTMLガイドを作成してください。」
+```
+
+## 📝 主要な成果物
+
+### 1. 調査レポート（Report.md）
+
+**含まれる内容：**
+- エグゼクティブサマリー
+- 基礎概念の解説
+- ILCD形式の詳細
+- ISO/IEC 82474の詳細
+- データ連携フローの分析
+- 実装事例とベストプラクティス
+- XMLサンプルと図表
+
+### 2. インタラクティブHTMLガイド
+
+**主な機能：**
+- 📊 インタラクティブなデータフローチャート
+- 🔍 データ形式の比較ツール
+- 🎮 シミュレーター（BOM→ILCD→LCA）
+- 📚 用語集とクイックリファレンス
+- 🎓 段階的な学習モジュール
+- ✅ 理解度チェッククイズ
+
+### 3. ドキュメントとテスト
+
+- 包括的なテストケース
+- 品質チェックリスト
+- 技術文書
+- 開発ログ
+
+## 🎓 対象読者
+
+- **初級者**: 環境情報管理とLCAの基礎を学びたい方
+- **中級者**: ILCD形式やISO/IEC 82474の実装を検討している方
+- **上級者**: サプライチェーン全体での環境データ統合を設計する方
+- **研究者**: この分野の最新動向と技術標準を理解したい方
+
+## 🔑 主要なトピック
+
+### ILCD（International Reference Life Cycle Data System）
+
+- EUが開発したLCAデータ交換標準
+- XMLベースの形式
+- ISO 14040/14044準拠
+- 8種類のデータセットタイプ
+- 主要LCAツールでサポート
+
+### ISO/IEC 82474（旧IEC 62474）
+
 - 材料宣言の国際標準
-- XMLベースのデータ交換フォーマット
+- サプライチェーン全体でのデータ交換
 - 宣言可能物質リスト（DSL）
+- RoHS、REACHなどの規制対応
+- XMLベースのデータ形式
 
-### 4. LCAツールとデータ連携
-- SimaPro, openLCA, GaBi等の主要ツール
-- データインポート・エクスポート機能
-- 環境影響評価の実装
+### BOM/BOPとLCAの統合
 
-## 使い方
+- 製品構成情報（BOM）の活用
+- 製造プロセス（BOP）データの統合
+- 環境影響評価への展開
+- サプライチェーンの透明性向上
 
-### 調査レポートの閲覧
+## 📊 期待される成果
 
-```bash
-# Markdownビューアで開く
-cat Report.md
-```
+このプロジェクトを完了することで、以下が得られます：
 
-### インタラクティブガイドの使用
+1. **包括的な知識**
+   - 環境情報管理の全体像
+   - 主要標準規格の詳細理解
+   - 実装のベストプラクティス
 
-```bash
-# ブラウザでHTMLファイルを開く
-open interactive_guide.html  # macOS
-xdg-open interactive_guide.html  # Linux
-start interactive_guide.html  # Windows
-```
+2. **実践的なツール**
+   - 学習用インタラクティブガイド
+   - XMLサンプルと実例
+   - テスト済みのコードとドキュメント
 
-または、お気に入りのブラウザで `interactive_guide.html` を直接開いてください。
+3. **実装の指針**
+   - 段階的な実装計画
+   - 既知の課題と解決策
+   - 将来の展望
 
-## 技術スタック
-
-### 調査レポート
-- Markdown形式
-- Mermaid記法（ダイアグラム）
-- 標準化されたXMLサンプル
-
-### インタラクティブHTML
-- HTML5/CSS3/JavaScript (ES6+)
-- D3.js（データ可視化、CDN経由）
-- Mermaid.js（ダイアグラム、CDN経由）
-- Prism.js（シンタックスハイライト、CDN経由）
-
-## 品質基準
+## 🛠️ 技術スタック
 
 ### レポート
-- 技術的正確性: 95%以上
-- すべての必須セクションの完成
-- 適切な引用と参考文献
-- 効果的な図表の使用
+- Markdown
+- Mermaid（図表）
+- LaTeX（数式、必要に応じて）
 
 ### インタラクティブHTML
-- WCAG 2.1 AA準拠
-- 主要4ブラウザ（Chrome, Firefox, Safari, Edge）対応
-- レスポンシブデザイン（デスクトップ/タブレット/モバイル）
-- Lighthouse Score > 90
+- HTML5
+- CSS3（レスポンシブデザイン）
+- Vanilla JavaScript
+- D3.js（データ可視化）
+- Mermaid.js（ダイアグラム）
+- Prism.js（コードハイライト）
 
-## 開発ログ
+## ✅ 品質基準
 
-開発プロセスの詳細は `DEVELOPMENT_LOG.md` を参照してください。
+- **技術的正確性**: 95%以上
+- **アクセシビリティ**: WCAG 2.1 AA準拠
+- **パフォーマンス**: Lighthouse Score > 90
+- **ブラウザ互換性**: Chrome, Firefox, Safari, Edge
+- **レスポンシブ**: デスクトップ/タブレット/モバイル対応
 
-## 参考資料
+## 📚 参考リソース
 
-主要な情報源とリソースは `DATA_SOURCES.md` を参照してください。
+### 公式ドキュメント
+- [ILCD Handbook](https://eplca.jrc.ec.europa.eu/ilcd.html)
+- [ISO/IEC 82474](https://www.iso.org/standard/85487.html)
+- [ISO 14040/14044](https://www.iso.org/standard/37456.html)
 
-## ライセンス
+### ツールとデータベース
+- [openLCA](https://www.openlca.org/)
+- [SimaPro](https://simapro.com/)
+- [Life Cycle Initiative](https://www.lifecycleinitiative.org/)
 
-このプロジェクトは教育・研究目的で作成されています。
-使用している標準規格の引用ガイドラインに従い、すべての引用元を明記しています。
+## 📄 ライセンス
 
-## 貢献
+このプロジェクトは教育目的で作成されています。
+使用する標準規格の引用については、各規格のライセンスに従ってください。
 
-詳細な指示書は `instructions.md` を参照してください。
+## 👥 貢献
 
-## 連絡先
+改善提案やフィードバックは歓迎します。
+このプロジェクトが環境情報管理の理解と実装に貢献することを願っています。
 
-プロジェクトに関する質問や提案は、Issueを作成してください。
+## 📞 サポート
+
+詳細な質問や技術的なサポートについては、instructions.mdを参照してください。
 
 ---
 
-**作成日**: 2025-10-25
-**バージョン**: 1.0
+**作成日**: 2025年10月25日  
+**バージョン**: 1.0  
+**推定作業時間**: 40-60時間  
+**推奨期間**: 2-3週間
